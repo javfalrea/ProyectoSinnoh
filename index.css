@@ -148,3 +148,138 @@ body {
     flex-direction: column;
 }
 
+/* Cabecera del panel de datos */
+.datos-cabecera {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 0 5px;
+}
+
+/* Contenido del panel de datos */
+.datos-contenido {
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+    font-size: 14px;
+}
+
+/* Contenedor de controles */
+.controles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Pad direccional */
+.pad-direccional {
+    width: 120px;
+    height: 120px;
+    position: relative;
+}
+
+/* Botones del pad */
+.boton-pad {
+    position: absolute;
+    background-color: #333;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid #222;
+    box-shadow: 0 3px 0 #222;
+}
+
+/* Efecto al pulsar botón del pad */
+.boton-pad:active {
+    background-color: #222;
+    transform: translateY(3px);
+    box-shadow: 0 0 0 #222;
+}
+
+/* Botón arriba */
+.boton-arriba {
+    width: 40px;
+    height: 40px;
+    top: 0;
+    left: 40px;
+}
+
+/* Botón derecha */
+.boton-derecha {
+    width: 40px;
+    height: 40px;
+    top: 40px;
+    right: 0;
+}
+
+/* Botón abajo */
+.boton-abajo {
+    width: 40px;
+    height: 40px;
+    bottom: 0;
+    left: 40px;
+}
+
+/* Botón izquierda */
+.boton-izquierda {
+    width: 40px;
+    height: 40px;
+    top: 40px;
+    left: 0;
+}
+
+/* Centro del pad */
+.boton-centro {
+    width: 40px;
+    height: 40px;
+    top: 40px;
+    left: 40px;
+    background-color: #444;
+}
+
+/* Botoes de acción */
+.botones-accion {
+    display: flex;
+    gap: 10px;
+}
+
+/* Estilos de botones de acción */
+.boton-accion {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    border: 3px solid #000;
+    box-shadow: 0 3px 0 #000;
+    transition: all 0.2s;
+}
+
+/* Efecto al pulsar botón de acción */
+.boton-accion:active {
+    transform: translateY(3px);
+    box-shadow: 0 0 0 #000;
+}
+
+/* Botón rojo (A) */
+.boton-rojo {
+    background-color: #ff3333;
+    font-size: 18px;
+}
+
+/* Botón verde (B) */
+.boton-verde {
+    background-color: #33cc33;
+    font-size: 18px;
+}
