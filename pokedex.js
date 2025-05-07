@@ -1,4 +1,5 @@
 /*  Constante de las id cambiadas (personalizadas) Este objeto mapea IDs personalizados a IDs reales de la API de Pokémon */
+
 const pokemonDisponible = {
     "1": "387",
     "2": "388",
@@ -254,8 +255,8 @@ async function buscarPokemon(id = null) {
 /* Función para recomendar un Pokémon aleatorio 
    Esta función selecciona un Pokémon aleatorio y muestra información básica */
 async function recomendarPokemon() {
-    // Genera un ID aleatorio entre 1 y 898 (número total de Pokémon)
-    const randomId = Math.floor(Math.random() * 898) + 1;                                         /*CAMBIAR EL RANGO*/
+    // Genera un ID aleatorio entre 1 y 210 (número total de Pokémon)
+    const randomId = Math.floor(Math.random() * 210) + 1;                                         /*CAMBIAR EL RANGO*/
     // Realiza una solicitud a la API para obtener datos del Pokémon aleatorio
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomId}`);
     const data = await response.json();
