@@ -283,3 +283,229 @@ body {
     background-color: #33cc33;
     font-size: 18px;
 }
+
+/* Selector de temas */
+.tema-selector {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Botón del selector de temas */
+.tema-boton {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 150px;
+    text-align: center;
+    transition: all 0.3s;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}
+
+/* Efecto hover del botón de temas */
+.tema-boton:hover {
+    background-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 8px rgba(0,0,0,0.3);
+}
+
+/* Menú desplegable de tems */
+.tema-lista {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 45px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 180px;
+}
+
+/* Mostrar menú de temas */
+.tema-lista.activo {
+    display: block;
+}
+
+/* Opción de tema */
+.tema-opcion {
+    padding: 10px 15px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+/* Efecto hover de opción de tema */
+.tema-opcion:hover {
+    background-color: #f0f0f0;
+}
+
+/* TEMAS PERSONALIZADOS */
+
+/* Tema Rojo (Clásico) */
+.rojo-skin .poke-cuerpo {
+    background-color: #ff3232;
+    border: 4px solid #cc0000;
+}
+
+.rojo-skin .luz-principal {
+    background: #00ffff;
+    box-shadow: 0 0 10px #00ffff, inset 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.rojo-skin .pantalla {
+    background-color: #9bbc0f;
+}
+
+.rojo-skin .panel-datos {
+    background-color: #9bbc0f;
+}
+
+.rojo-skin .datos-contenido {
+    background-color: #9bbc0f;
+    color: #000;
+}
+
+/* Tema Azul (Agua) */
+.azul-skin .poke-cuerpo {
+    background-color: #2196f3;
+    border: 4px solid #0d47a1;
+}
+
+.azul-skin .luz-principal {
+    background: #ffeb3b;
+    box-shadow: 0 0 10px #ffeb3b, inset 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.azul-skin .pantalla {
+    background-color: #80deea;
+}
+
+.azul-skin .panel-datos {
+    background-color: #80deea;
+    border-color: #0277bd;
+}
+
+.azul-skin .datos-contenido {
+    background-color: #80deea;
+    color: #01579b;
+}
+
+.azul-skin .menu-item.activo {
+    background-color: #0288d1;
+}
+
+/* Tema Verde (Planta) */
+.verde-skin .poke-cuerpo {
+    background-color: #4caf50;
+    border: 4px solid #2e7d32;
+}
+
+.verde-skin .luz-principal {
+    background: #ff5722;
+    box-shadow: 0 0 10px #ff5722, inset 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.verde-skin .pantalla {
+    background-color: #c8e6c9;
+}
+
+.verde-skin .panel-datos {
+    background-color: #c8e6c9;
+    border-color: #388e3c;
+}
+
+.verde-skin .datos-contenido {
+    background-color: #c8e6c9;
+    color: #1b5e20;
+}
+
+.verde-skin .menu-item.activo {
+    background-color: #2e7d32;
+}
+
+/* Tema Negro (Fantasma) */
+.negro-skin .poke-cuerpo {
+    background-color: #263238;
+    border: 4px solid #000000;
+}
+
+.negro-skin .luz-principal {
+    background: #9c27b0;
+    box-shadow: 0 0 10px #9c27b0, inset 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.negro-skin .pantalla {
+    background-color: #37474f;
+}
+
+.negro-skin .panel-datos {
+    background-color: #37474f;
+    border-color: #000000;
+}
+
+.negro-skin .datos-contenido {
+    background-color: #37474f;
+    color: #e0e0e0;
+}
+
+.negro-skin .datos-cabecera {
+    color: #e0e0e0;
+}
+
+.negro-skin .texto-titulo {
+    color: #e0e0e0;
+}
+
+.negro-skin .menu-item {
+    color: #e0e0e0;
+}
+
+.negro-skin .menu-item.activo {
+    background-color: #000000;
+}
+
+/* Tema Marrón (Vintage) */
+.marron-skin .poke-cuerpo {
+    background-color: #8d6e63;
+    border: 4px solid #5d4037;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.marron-skin .luz-principal {
+    background: #ffcc80;
+    box-shadow: 0 0 10px #ffcc80, inset 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.marron-skin .marco-pantalla {
+    background-color: #4e342e;
+}
+
+.marron-skin .pantalla {
+    background-color: #d7ccc8;
+    border-color: #5d4037;
+}
+
+.marron-skin .panel-datos {
+    background-color: #d7ccc8;
+    border-color: #5d4037;
+}
+
+.marron-skin .datos-contenido {
+    background-color: #d7ccc8;
+    color: #3e2723;
+}
+
+.marron-skin .menu-item.activo {
+    background-color: #5d4037;
+}
