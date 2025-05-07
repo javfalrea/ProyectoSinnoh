@@ -256,7 +256,7 @@ async function buscarPokemon(id = null) {
    Esta función selecciona un Pokémon aleatorio y muestra información básica */
 async function recomendarPokemon() {
     // Genera un ID aleatorio entre 1 y 210 (número total de Pokémon)
-    const randomId = Math.floor(Math.random() * 210) + 1;                                         /*CAMBIAR EL RANGO*/
+    const randomId = Math.floor(Math.random() * 210) + 1;                                        
     // Realiza una solicitud a la API para obtener datos del Pokémon aleatorio
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomId}`);
     const data = await response.json();
