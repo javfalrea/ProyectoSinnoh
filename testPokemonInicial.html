@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Pokemon Inicial</title>
+</head>
+<body>
+    <h1>¿Qué Pokémon inicial de Sinnoh eres?</h1>
+    <form id="formulario">
+        <div class="question">
+            <p>1. ¿Qué harías si ves que tu amigo está a punto de hacer una tontería?</p>
+            <label><input type="radio" name="q1" value="piplup"> A) Le pido por favor que se esté quieto.</label><br>
+            <label><input type="radio" name="q1" value="chimchar" required> B) Lo dejo hacerlo, que aprenda a golpes.</label><br>
+            <label><input type="radio" name="q1" value="turtwig"> C) Me lanzo a detenerlo, aunque me meta en líos.</label>
+        </div>
+  
+        <div class="question">
+            <p>2. ¿Con qué clima te sientes más cómodo?</p>
+            <label><input type="radio" name="q2" value="chimchar" required> A) Cielo azul y calorcito.</label><br>
+            <label><input type="radio" name="q2" value="turtwig"> B) Días nublados y frescos.</label><br>
+            <label><input type="radio" name="q2" value="piplup"> C) Lluvia suave o nieve ligera.</label>
+            
+        </div>
+  
+        <div class="question">
+            <p>3. Si fueras un elemento de la naturaleza, ¿cuál serías?</p>
+            <label><input type="radio" name="q3" value="chimchar" required> A) Fuego.</label><br>
+            <label><input type="radio" name="q3" value="piplup"> B) Agua.</label><br>
+            <label><input type="radio" name="q3" value="turtwig"> C) Tierra.</label>
+        </div>
+  
+        <div class="question">
+            <p>4. ¿Cómo actuarías en una pelea?</p>
+            <label><input type="radio" name="q4" value="turtwig"> A) Me quedo quieto esperando el momento adecuado para atacar.</label><br>
+            <label><input type="radio" name="q4" value="chimchar" required> B) Voy a lo loco, sin miedo.</label><br>
+            <label><input type="radio" name="q4" value="piplup"> C) Uso la estrategia. Golpeo y me escondo.</label><br>
+        </div>
+  
+        <div class="question">
+            <p>5. ¿Cómo reaccionas cuando tienes que improvisar?</p>
+            <label><input type="radio" name="q5" value="chimchar" required> A) Me lanzo con lo primero que se me ocurre.</label><br>
+            <label><input type="radio" name="q5" value="piplup"> B) Me tomo un segundo para pensar y actúo con precisión.</label><br>
+            <label><input type="radio" name="q5" value="turtwig"> C) Me intento asegurar de que todo salga bien.</label>
+        </div>
+  
+        <div class="question">
+            <p>6. ¿Cuál de estas comidas te representa mejor?</p>
+            <label><input type="radio" name="q6" value="piplup"> B) Sushi, elegante y fresco.</label><br>
+            <label><input type="radio" name="q6" value="turtwig"> C) Un estofado casero, lento pero delicioso.</label><br>
+            <label><input type="radio" name="q6" value="chimchar" required> A) Algo picante, con mucho sabor.</label>
+        </div>
+  
+        <div class="question">
+            <p>7. ¿Dónde preferirías vivir?</p>
+            <label><input type="radio" name="q7" value="piplup"> A) Un faro junto al mar.</label><br>
+            <label><input type="radio" name="q7" value="chimchar" required> B) Una casa cerca de un volcán.</label><br>           
+            <label><input type="radio" name="q7" value="turtwig"> C) Una cabaña en medio del bosque.</label>
+        </div>
+  
+        <div class="question">
+            <p>8. ¿Qué tipo de películas te gusta más?</p>
+            <label><input type="radio" name="q8" value="chimchar" required> A) Acción sin parar.</label><br>
+            <label><input type="radio" name="q8" value="turtwig"> B) Aventuras tranquilas y profundas.</label><br>
+            <label><input type="radio" name="q8" value="piplup"> C) Misterios o dramas con giros inteligentes.</label>
+        </div>
+  
+        <div class="question">
+            <p>9. ¿Qué animal te gusta más?</p>
+            <label><input type="radio" name="q9" value="turtwig"> A) Una tortuga.</label><br>
+            <label><input type="radio" name="q9" value="piplup"> B) Un pingüino.</label><br>
+            <label><input type="radio" name="q9" value="chimchar" required> C) Un mono.</label>
+
+        </div>
+  
+        <div class="question">
+            <p>10. ¿Cuál de estos colores te atrae más hoy?</p>
+            <label><input type="radio" name="q10" value="chimchar" required> A) Rojo</label><br>
+            <label><input type="radio" name="q10" value="piplup"> B) Azul</label><br>
+            <label><input type="radio" name="q10" value="turtwig"> C) Verde</label>
+        </div>
+  
+        <button onclick="mostrarPokemon()">Ver mi Pokémon inicial</button>
+    </form>
+  
+    <div id="resultado" class="resultado"></div>
+
+  </body>
+</html>
