@@ -98,10 +98,10 @@ input[type="radio"] {
     border-top-color: #4caf50;
 }
 
-/* Botón de reinicio */
-.btn-reiniciar {
+/* Estilo para el botón de volver al inicio y reiniciar */
+.botonFinal {
     display: block;
-    margin: 20px auto;
+    margin: 30px auto;
     padding: 12px 25px;
     background-color: #ffcb05;
     color: #3b5998;
@@ -111,10 +111,13 @@ input[type="radio"] {
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    text-decoration: none;
+    max-width: 200px;
 }
 
-.btn-reiniciar:hover {
+.botonFinal:hover {
     background-color: #3b5998;
     color: #ffcb05;
     transform: scale(1.05);
