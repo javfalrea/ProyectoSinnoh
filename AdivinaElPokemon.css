@@ -198,3 +198,108 @@ a:hover {
     color: white;
     transform: scale(1.05);
 }
+
+
+/* Estilos específicos para cada pantalla */
+#pantalla-inicio {
+    border-color: var(--pokemon-red);
+}
+
+#intento1 {
+    border-color: var(--pokemon-yellow);
+}
+
+#intento2 {
+    border-color: var(--pokemon-blue);
+}
+
+#final {
+    border-color: var(--pokemon-dark-blue);
+}
+
+/* Estilos de derrota */
+#derrota {
+    background-color: rgba(239, 64, 54, 0.1);
+    border: 2px dashed var(--pokemon-red);
+}
+
+/* Estilos para mostrar/ocultar pantallas */
+#intento1, #intento2, #final {
+    display: none;
+}
+
+#pantalla-inicio:target {
+    display: flex;
+}
+
+#intento1:target {
+    display: flex;
+}
+
+#intento1:target ~ #pantalla-inicio {
+    display: none;
+}
+
+#intento2:target {
+    display: flex;
+}
+
+#intento2:target ~ #pantalla-inicio,
+#intento2:target ~ #intento1 {
+    display: none;
+}
+
+#final:target {
+    display: flex;
+}
+
+#final:target ~ #pantalla-inicio,
+#final:target ~ #intento1,
+#final:target ~ #intento2 {
+    display: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    div {
+        padding: 15px;
+    }
+    
+    img {
+        max-width: 150px;
+    }
+    
+    button {
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    p {
+        font-size: 1rem;
+    }
+    
+    img {
+        max-width: 120px;
+    }
+    
+    input[type="text"], button {
+        width: 100%;
+    }
+}
