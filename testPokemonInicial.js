@@ -40,13 +40,13 @@ function mostrarResultado() {
     let imagen = "";
     if (conteo.chimchar > conteo.piplup && conteo.chimchar > conteo.turtwig) {
         resultado = "🔥 ¡Escoge a Chimchar! Impulsivo, valiente y lleno de energía.";
-        imagen = `<img alt="Chimchar" src="https://images.wikidexcdn.net/mwuploads/wikidex/thumb/9/9f/latest/20200827204158/Chimchar.png/800px-Chimchar.png" />`;
+        imagen = `<img class="chimchar-bg" alt="Chimchar" src="https://images.wikidexcdn.net/mwuploads/wikidex/thumb/9/9f/latest/20200827204158/Chimchar.png/800px-Chimchar.png" />`;
     } else if (conteo.piplup > conteo.chimchar && conteo.piplup > conteo.turtwig) {
         resultado = "💧 ¡Escoge a Piplup! Elegante, inteligente y con mucha gracia.";
-        imagen = `<img alt="Piplup" src="https://w7.pngwing.com/pngs/394/68/png-transparent-pokemon-ranger-shadows-of-almia-pikachu-piplup-art-pikachu-vertebrate-bird-pokemon.png" />`;
+        imagen = `<img class="piplup-bg" alt="Piplup" src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/393.png" />`;
     } else if (conteo.turtwig > conteo.chimchar && conteo.turtwig > conteo.piplup) {
         resultado = "🌿 ¡Escoge a Turtwig! Tranquilo, leal y resistente como la naturaleza.";
-        imagen = `<img alt="Turtwig" src="https://images.wikidexcdn.net/mwuploads/wikidex/thumb/c/c8/latest/20151017105732/Turtwig.png/800px-Turtwig.png" />`;
+        imagen = `<img class="turtwig-bg" alt="Turtwig" src="https://images.wikidexcdn.net/mwuploads/wikidex/thumb/c/c8/latest/20151017105732/Turtwig.png/800px-Turtwig.png" />`;
     } else {
         resultado = "🤔 ¡Parece que hay un empate! Deberías volver a realizar el test.";
     }

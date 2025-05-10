@@ -1,0 +1,121 @@
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f8ff;
+    color: #333;
+}
+
+h1 {
+    color: #3b5998;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #2a75bb;
+    font-size: 1.6rem;
+}
+
+/* Estilos para las preguntas */
+.question {
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #ffcb05;
+}
+
+/* Estilos para las opciones */
+label {
+    display: block;
+    margin: 12px 0;
+    padding: 12px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+label:hover {
+    background-color: #f5f5f5;
+    border-left: 4px solid #3b5998;
+    transform: translateX(5px);
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Estilos para los resultados */
+.resultado {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 30px 0;
+    padding: 25px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #ffcb05;
+    font-weight: bold;
+    display: none;
+}
+
+.imgPokemonInicial {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 300px;
+    display: none;
+}
+
+.imgPokemonInicial img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    border: 5px solid white;
+}
+
+/* Estilos específicos para cada Pokémon */
+.chimchar-bg {
+    background-color: #fff3e0;
+    border-top-color: #ff5722;
+}
+
+.piplup-bg {
+    background-color: #e3f2fd;
+    border-top-color: #2196f3;
+}
+
+.turtwig-bg {
+    background-color: #e8f5e9;
+    border-top-color: #4caf50;
+}
+
+/* Botón de reinicio */
+.btn-reiniciar {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 25px;
+    background-color: #ffcb05;
+    color: #3b5998;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-reiniciar:hover {
+    background-color: #3b5998;
+    color: #ffcb05;
+    transform: scale(1.05);
+}
