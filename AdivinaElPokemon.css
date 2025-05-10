@@ -123,3 +123,78 @@ p strong {
     font-size: 1.2rem;
     letter-spacing: 1px;
 }
+
+/* Formularios y campos de entrada */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 15px 0;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: var(--pokemon-dark-blue);
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 8px 0;
+    border: 2px solid var(--pokemon-light-blue);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: var(--pokemon-blue);
+    box-shadow: 0 0 0 3px rgba(10, 133, 199, 0.3);
+}
+
+button {
+    background-color: var(--pokemon-blue);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 12px 24px;
+    margin: 15px 0;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 0 var(--pokemon-dark-blue);
+}
+
+button:hover {
+    background-color: var(--pokemon-light-blue);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 var(--pokemon-dark-blue);
+}
+
+/* Enlaces */
+a {
+    color: var(--pokemon-red);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: 2px solid var(--pokemon-red);
+    border-radius: var(--border-radius);
+    transition: all 0.3s;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+a:hover {
+    background-color: var(--pokemon-red);
+    color: white;
+    transform: scale(1.05);
+}
