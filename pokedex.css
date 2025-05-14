@@ -1,0 +1,537 @@
+/* Estilos básicos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
+}
+
+/* Cupero de la página */
+body {
+    background-image: url(https://cdna.artstation.com/p/assets/images/images/043/905/278/large/meltyrice-image-2021-12-03-143809.jpg?1638560349);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Contenedor principal */
+.poke-contenedor {
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    margin-bottom: 65px;
+}
+
+/* Cuerpo de la pokédex */
+.poke-cuerpo {
+    width: 100%;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 10px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+/* Panel de control de color fijo */
+.controles-panel {
+    background-color: #4a4a4a;
+    border-radius: 20px;
+    padding: 15px;
+    border: 4px solid #333;
+}
+
+/* Cabecera del dispositivo */
+.poke-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Luz */
+.luz-principal {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 5px solid #000;
+    position: relative;
+}
+
+/* Efecto de brillo */
+.luz-principal::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+}
+
+/* Área del título */
+.area-titulo {
+    text-align: right;
+    margin-right: 10px;
+}
+
+/* Texto del título */
+.texto-titulo {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+/* Icono de pokeball */
+.icono-pokeball {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: radial-gradient(circle at center, white 0%, white 45%, black 45%, black 55%, white 55%, white 100%);
+    border-radius: 50%;
+    border: 2px solid black;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+/* Marco negro de la patalla */
+.marco-pantalla {
+    background-color: #000;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 15px;
+}
+
+/* Pantalla principal */
+.pantalla {
+    background-color: #9bbc0f;
+    border-radius: 5px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #333;
+}
+
+/* Opciones del menú */
+.menu-item {
+    cursor: default;
+    padding: 20px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+/* Efecto hover del menú */
+.menu-item:hover {
+    background-color: #72a000;
+}
+
+/* Opción activa del menú */
+.menu-item.activo {
+    background-color: #4a6600;
+    color: white;
+}
+
+/* Panel de información */
+.panel-datos {
+    background-color: #9bbc0f;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 4px solid #333;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cabecera del panel de datos */
+.datos-cabecera {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 0 5px;
+}
+
+/* Contenido del panel de datos */
+.datos-contenido {
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+    font-size: 14px;
+}
+
+/* Contenedor de controles */
+.controles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Pad direccional */
+.pad-direccional {
+    width: 120px;
+    height: 120px;
+    position: relative;
+}
+
+/* Botones del pad */
+.boton-pad {
+    position: absolute;
+    background-color: #333;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid #222;
+    box-shadow: 0 3px 0 #222;
+}
+
+/* Efecto al pulsar botón del pad */
+.boton-pad:active {
+    background-color: #222;
+    transform: translateY(3px);
+    box-shadow: 0 0 0 #222;
+}
+
+/* Botón arriba */
+.boton-arriba {
+    width: 40px;
+    height: 40px;
+    top: 0;
+    left: 40px;
+}
+
+/* Botón derecha */
+.boton-derecha {
+    width: 40px;
+    height: 40px;
+    top: 40px;
+    right: 0;
+}
+
+/* Botón abajo */
+.boton-abajo {
+    width: 40px;
+    height: 40px;
+    bottom: 0;
+    left: 40px;
+}
+
+/* Botón izquierda */
+.boton-izquierda {
+    width: 40px;
+    height: 40px;
+    top: 40px;
+    left: 0;
+}
+
+/* Centro del pad */
+.boton-centro {
+    width: 40px;
+    height: 40px;
+    top: 40px;
+    left: 40px;
+    background-color: #444;
+}
+
+/* Botoes de acción */
+.botones-accion {
+    display: flex;
+    gap: 10px;
+}
+
+/* Estilos de botones de acción */
+.boton-accion {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    border: 3px solid #000;
+    box-shadow: 0 3px 0 #000;
+    transition: all 0.2s;
+}
+
+/* Efecto al pulsar botón de acción */
+.boton-accion:active {
+    transform: translateY(3px);
+    box-shadow: 0 0 0 #000;
+}
+
+/* Botón verde (B) redondo */
+.boton-verde {
+    background-color: #33cc33;
+    font-size: 18px;
+    border-radius: 50%; /* Hace que el botón sea circular */
+    width: 80px; /* Definir un ancho fijo */
+    height: 80px; /* El mismo valor que el ancho para que sea un círculo perfecto */
+    display: flex; /* Para centrar el contenido */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    padding: 0; /* Eliminar padding que pueda distorsionar la forma */
+}
+
+/* Selector de temas */
+.tema-selector {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Botón del selector de temas */
+.tema-boton {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 150px;
+    text-align: center;
+    transition: all 0.3s;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}
+
+/* Efecto hover del botón de temas */
+.tema-boton:hover {
+    background-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 8px rgba(0,0,0,0.3);
+}
+
+/* Menú desplegable de tems */
+.tema-lista {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 45px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 180px;
+}
+
+/* Mostrar menú de temas */
+.tema-lista.activo {
+    display: block;
+}
+
+/* Opción de tema */
+.tema-opcion {
+    padding: 10px 15px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+/* Efecto hover de opción de tema */
+.tema-opcion:hover {
+    background-color: #f0f0f0;
+}
+
+/* TEMAS PERSONALIZADOS */
+
+/* Tema Rojo (Clásico) */
+.rojo-skin .poke-cuerpo {
+    background-color: #ff3232;
+    border: 4px solid #cc0000;
+}
+
+.rojo-skin .luz-principal {
+    background: #00ffff;
+    box-shadow: 0 0 10px #00ffff, inset 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.rojo-skin .pantalla {
+    background-color: #9bbc0f;
+}
+
+.rojo-skin .panel-datos {
+    background-color: #9bbc0f;
+}
+
+.rojo-skin .datos-contenido {
+    background-color: #9bbc0f;
+    color: #000;
+}
+
+.rojo-skin .boton-verde {
+    background-color: #00ffff;
+    border: 5px solid #036464;
+}
+
+/* Tema Azul (Agua) */
+.azul-skin .poke-cuerpo {
+    background-color: #2196f3;
+    border: 4px solid #0d47a1;
+}
+
+.azul-skin .luz-principal {
+    background: #ffeb3b;
+    box-shadow: 0 0 10px #ffeb3b, inset 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.azul-skin .pantalla {
+    background-color: #80deea;
+}
+
+.azul-skin .panel-datos {
+    background-color: #80deea;
+    border-color: #0277bd;
+}
+
+.azul-skin .datos-contenido {
+    background-color: #80deea;
+    color: #01579b;
+}
+
+.azul-skin .menu-item.activo {
+    background-color: #6b6001;
+}
+
+.azul-skin .boton-verde {
+    background-color: #ffeb3b;
+    border: 5px solid #6b6001;
+}
+
+/* Tema Verde (Planta) */
+.verde-skin .poke-cuerpo {
+    background-color: #4caf50;
+    border: 4px solid #2e7d32;
+}
+
+.verde-skin .luz-principal {
+    background: #ff5722;
+    box-shadow: 0 0 10px #ff5722, inset 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.verde-skin .pantalla {
+    background-color: #c8e6c9;
+}
+
+.verde-skin .panel-datos {
+    background-color: #c8e6c9;
+    border-color: #388e3c;
+}
+
+.verde-skin .datos-contenido {
+    background-color: #c8e6c9;
+    color: #1b5e20;
+}
+
+.verde-skin .menu-item.activo {
+    background-color: #912c0d;
+}
+
+.verde-skin .boton-verde {
+    background-color: #ff5722;
+    border: 5px solid #912c0d;
+}
+
+/* Tema Negro (Fantasma) */
+.negro-skin .poke-cuerpo {
+    background-color: #263238;
+    border: 4px solid #000000;
+}
+
+.negro-skin .luz-principal {
+    background: #9c27b0;
+    box-shadow: 0 0 10px #9c27b0, inset 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.negro-skin .pantalla {
+    background-color: #37474f;
+}
+
+.negro-skin .panel-datos {
+    background-color: #37474f;
+    border-color: #000000;
+}
+
+.negro-skin .datos-contenido {
+    background-color: #37474f;
+    color: #e0e0e0;
+}
+
+.negro-skin .datos-cabecera {
+    color: #e0e0e0;
+}
+
+.negro-skin .texto-titulo {
+    color: #e0e0e0;
+}
+
+.negro-skin .menu-item {
+    color: #e0e0e0;
+}
+
+.negro-skin .menu-item.activo {
+    background-color: #650675;
+}
+
+.negro-skin .boton-verde {
+    background-color: #9c27b0;
+    border: 5px solid #650675;
+}
+
+/* Tema Marrón (Vintage) */
+.marron-skin .poke-cuerpo {
+    background-color: #8d6e63;
+    border: 4px solid #5d4037;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.marron-skin .luz-principal {
+    background: #ffcc80;
+    box-shadow: 0 0 10px #ffcc80, inset 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.marron-skin .marco-pantalla {
+    background-color: #4e342e;
+}
+
+.marron-skin .pantalla {
+    background-color: #d7ccc8;
+    border-color: #5d4037;
+}
+
+.marron-skin .panel-datos {
+    background-color: #d7ccc8;
+    border-color: #5d4037;
+}
+
+.marron-skin .datos-contenido {
+    background-color: #d7ccc8;
+    color: #3e2723;
+}
+
+.marron-skin .menu-item.activo {
+    background-color: #5d4037;
+}
+
+.marron-skin .boton-verde {
+    background-color: #ffcc80;
+    border: 5px solid #81530f;
+}

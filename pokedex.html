@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Sinnoh</title>
+    <link rel="stylesheet" href="pokedex.css">
+</head>
+<body>
+        <!-- Contenedor principal de la Pokédex -->
+    <div class="poke-contenedor rojo-skin">
+        <!-- Selector de skins -->
+        <div class="tema-selector">
+            <button class="tema-boton" id="cambiar-tema">Cambiar Skin</button>
+            <div class="tema-lista" id="lista-temas">
+                <div class="tema-opcion" data-tema="rojo">Rojo</div>
+                <div class="tema-opcion" data-tema="azul">Agua </div>
+                <div class="tema-opcion" data-tema="verde">Planta</div>
+                <div class="tema-opcion" data-tema="negro">Fantasma </div>
+                <div class="tema-opcion" data-tema="marron">Vintage </div>
+            </div>
+        </div>
+        <!-- Cuerpo de la Pokédex -->
+        <div class="poke-cuerpo">
+            <!-- Parte superior -->
+            <div class="poke-cabecera">
+                <div class="luz-principal"></div>
+                <div class="area-titulo">
+                    <div class="texto-titulo">POKÉDEX DE<br>POKÉMON</div>
+                    <div class="icono-pokeball"></div>
+                </div>
+            </div>
+        
+        <!-- Pantalla principal -->
+        <div class="marco-pantalla">
+            <div class="pantalla">
+                 <!-- Menú principal -->
+                <div class="menu-principal">
+                    
+                </div>
+            </div>
+        </div>
+
+    <!-- Panel de información inferior -->
+    <div class="panel-datos">
+        <div class="datos-cabecera">
+            <span>OPCIÓN</span>
+            <span>MENÚ</span>
+        </div>
+        <div class="datos-contenido" id="descripcion-seccion">
+            SELECCIONA UNA<br> 
+            OPCIÓN DEL<br> 
+            MENÚ
+        </div>
+    </div>
+
+    <!-- Panel de control (cruceta y botones) -->
+    <div class="controles-panel">
+        <div class="controles">
+            <div class="pad-direccional">
+                <div class="boton-pad boton-arriba" id="boton-arriba"></div>
+                <div class="boton-pad boton-derecha" id="boton-derecha"></div>
+                <div class="boton-pad boton-abajo" id="boton-abajo"></div>
+                <div class="boton-pad boton-izquierda" id="boton-izquierda"></div>
+                <div class="boton-pad boton-centro"></div>
+            </div>
+
+            <div class="botones-accion">
+                <div class="boton-accion boton-verde" id="boton-b"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+    <script src="pokedex.js"></script>
+</body>    
+</html>
