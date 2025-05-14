@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Adivina el Pokémon</title> 
     <link rel="stylesheet" href="AdivinaElPokemon.css">
+    <style>
+        /* Estilo adicional para asegurar que solo se vea lo necesario al inicio */
+        #pantalla-inicio, #intento1, #intento2, #final, #pantalla-edicion {
+            display: none;
+        }
+    </style>
 </head> 
 
 <body> 
@@ -16,59 +22,92 @@
     <div class="pokeball-decoration pokeball-bottomleft"></div>
     <div class="pokeball-decoration pokeball-bottomright"></div>
     
-    <!-- Contenedor para la sección de instrucciones -->
-    <div> 
+    <!-- Botones principales - Únicos elementos visibles al inicio junto con instrucciones -->
+    <div class="botones-principales">
+        <button id="btn-comenzar" class="btn-principal">Comenzar Juego</button>
+        <button id="btn-editar" class="btn-principal">Modo Edición</button>
+    </div>
+    
+    <!-- Contenedor para la sección de instrucciones - Visible al inicio -->
+    <div class="instrucciones"> 
         <h2>Instrucciones</h2> 
         <p>Trata de adivinar el nombre del Pokémon misterioso de la 4ª generación. Tienes 3 intentos. Con cada fallo, recibirás una letra adicional como pista.</p> 
     </div> 
+    
+    <!-- Pantalla de edición - Inicialmente oculta -->
+    <div id="pantalla-edicion"> 
+        <h2>Modo Edición</h2>
+        <p>Aquí puedes personalizar algunos aspectos del juego:</p>
+        
+        <form id="form-edicion">
+            <div class="form-group">
+                <label for="numero-intentos">Número de intentos:</label>
+                <select id="numero-intentos">
+                    <option value="1">1 intento</option>
+                    <option value="2">2 intentos</option>
+                    <option value="3" selected>3 intentos</option>
+                    <option value="4">4 intentos</option>
+                    <option value="5">5 intentos</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="pista-inicial">Letras de pista inicial:</label>
+                <select id="pista-inicial">
+                    <option value="0">0 letras (difícil)</option>
+                    <option value="1" selected>1 letra (normal)</option>
+                    <option value="2">2 letras (fácil)</option>
+                    <option value="3">3 letras (muy fácil)</option>
+                </select>
+            </div>
+            
+            <button type="button" id="btn-volver" class="btn-cancelar">Volver</button>
+        </form>
+    </div>
 
-    <!-- PRIMERA PANTALLA: INICIO DEL JUEGO -->
+    <!-- PRIMERA PANTALLA: INICIO DEL JUEGO - Inicialmente oculta -->
     <div id="pantalla-inicio"> 
         <h2>¡Comienza el juego!</h2> 
         <p>El Pokémon misterioso te espera. ¿Podrás adivinarlo?</p> 
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/silhouettes/387.png" alt="Silueta de Pokémon" /> <!-- Imagen de silueta de Pokémon desde PokeAPI -->
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/silhouettes/387.png" alt="Silueta de Pokémon" /> 
         <p>Pista inicial: <strong>T</strong>_ _ _ _ _ _</p> 
         
-        <!-- Formulario que se envía a la misma página con ancla #intento1 -->
-        <form action="#intento1"> 
+        <form> 
             <label for="respuesta-inicio">Tu respuesta:</label> 
             <input type="text" id="respuesta-inicio" name="respuesta" required> 
             <button type="submit">Comprobar (Intento 1 de 3)</button> 
         </form> 
     </div> 
 
-    <!-- SEGUNDA PANTALLA: PRIMER FALLO -->
+    <!-- SEGUNDA PANTALLA: PRIMER FALLO - Inicialmente oculta -->
     <div id="intento1"> 
         <h2>¡Primer intento fallido!</h2> 
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/silhouettes/387.png" alt="Silueta de Pokémon" /> <!-- Misma imagen de silueta -->
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/silhouettes/387.png" alt="Silueta de Pokémon" /> 
         <p>Pista actual: <strong>Tu</strong>_ _ _ _ _</p> 
         <p>Respuesta anterior: <span style="color: red;">Incorrecta</span></p> 
         
-        <!-- Formulario para el segundo intento -->
-        <form action="#intento2"> 
+        <form> 
             <label for="respuesta-intento1">Tu respuesta:</label> 
             <input type="text" id="respuesta-intento1" name="respuesta" required> 
             <button type="submit">Comprobar (Intento 2 de 3)</button> 
         </form> 
     </div> 
 
-    <!-- TERCERA PANTALLA: SEGUNDO FALLO -->
+    <!-- TERCERA PANTALLA: SEGUNDO FALLO - Inicialmente oculta -->
     <div id="intento2"> 
         <h2>¡Segundo intento fallido!</h2> 
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/silhouettes/387.png" alt="Silueta de Pokémon" /> <!-- Misma imagen de silueta -->
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/silhouettes/387.png" alt="Silueta de Pokémon" /> 
         <p>Pista actual: <strong>Tur</strong>_ _ _ _</p> 
         <p>Respuestas anteriores: <span style="color: red;">Incorrectas</span></p> 
         
-
-        <!-- Formulario para el tercer y último intento -->
-        <form action="#final"> 
+        <form> 
             <label for="respuesta-intento2">Tu respuesta:</label> 
-            <input type="text" id="respuesta-intento2" name="respuesta" required> <!-- Campo para la respuesta -->
+            <input type="text" id="respuesta-intento2" name="respuesta" required> 
             <button type="submit">Comprobar (Último intento)</button> 
         </form> 
     </div> 
 
-    <!-- PANTALLA FINAL: RESULTADO -->
+    <!-- PANTALLA FINAL: RESULTADO - Inicialmente oculta -->
     <div id="final"> 
         <h2>¡Juego terminado!</h2> 
         
@@ -76,11 +115,14 @@
         <div id="derrota"> 
             <h3>¡Has perdido!</h3> 
             <p>Se te acabaron los intentos. El Pokémon misterioso era: <strong>Turtwig</strong></p> 
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/387.png" alt="Turtwig" /> <!-- Muestra la imagen completa del Pokémon -->
-        </div> <!-- Cierra el contenedor de derrota -->
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/387.png" alt="Turtwig" /> 
+        </div>
         
-        <!-- Opción para reiniciar el juego -->
-        <p><a href="#">¡Jugar de nuevo!</a></p> 
+        <!-- Opción para reiniciar el juego o volver al inicio -->
+        <p>
+            <a href="#" class="btn-reiniciar">¡Jugar de nuevo!</a>
+            <a href="index.html" class="btn-inicio">Volver a la página inicial</a>
+        </p> 
     </div> 
     
     <!-- Script JavaScript para la funcionalidad -->
