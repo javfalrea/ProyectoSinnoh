@@ -120,3 +120,17 @@ table:nth-child(9) th { background-color: #F8D030; } /* Eléctrico */
         font-size: 1.2rem;
     }
 }
+
+/* Botón para volver */
+.botonFinal {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #b01e87;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Staatliches', cursive;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
