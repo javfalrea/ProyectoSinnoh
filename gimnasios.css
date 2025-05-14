@@ -1,19 +1,28 @@
-/* Estilos generales */
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     max-width: 900px;
     margin: 0 auto;
     padding: 20px;
     background-color: #f0f0f0;
-    background-image: url('https://assets.pokemon.com/static2/_ui/img/chrome/container_bg.png');
+    background-image: url('https://wallpapercave.com/wp/wp9457704.png');
+    background-size: cover;
+    background-position: center;
+    color: #333;
 }
 
 h1 {
+    font-family: 'Staatliches', cursive;
     text-align: center;
-    color: #b01e87;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    font-size: 2.5rem;
+    color: #ffffff;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    font-size: 3rem;
     margin-bottom: 30px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 /* Estilos para las tablas de gimnasios */
