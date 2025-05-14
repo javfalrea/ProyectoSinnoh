@@ -272,16 +272,17 @@ body {
     box-shadow: 0 0 0 #000;
 }
 
-/* Botón rojo (A) */
-.boton-rojo {
-    background-color: #ff3333;
-    font-size: 18px;
-}
-
-/* Botón verde (B) */
+/* Botón verde (B) redondo */
 .boton-verde {
     background-color: #33cc33;
     font-size: 18px;
+    border-radius: 50%; /* Hace que el botón sea circular */
+    width: 80px; /* Definir un ancho fijo */
+    height: 80px; /* El mismo valor que el ancho para que sea un círculo perfecto */
+    display: flex; /* Para centrar el contenido */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    padding: 0; /* Eliminar padding que pueda distorsionar la forma */
 }
 
 /* Selector de temas */
@@ -376,6 +377,11 @@ body {
     color: #000;
 }
 
+.rojo-skin .boton-verde {
+    background-color: #00ffff;
+    border: 5px solid #036464;
+}
+
 /* Tema Azul (Agua) */
 .azul-skin .poke-cuerpo {
     background-color: #2196f3;
@@ -402,7 +408,12 @@ body {
 }
 
 .azul-skin .menu-item.activo {
-    background-color: #0288d1;
+    background-color: #6b6001;
+}
+
+.azul-skin .boton-verde {
+    background-color: #ffeb3b;
+    border: 5px solid #6b6001;
 }
 
 /* Tema Verde (Planta) */
@@ -431,7 +442,12 @@ body {
 }
 
 .verde-skin .menu-item.activo {
-    background-color: #2e7d32;
+    background-color: #912c0d;
+}
+
+.verde-skin .boton-verde {
+    background-color: #ff5722;
+    border: 5px solid #912c0d;
 }
 
 /* Tema Negro (Fantasma) */
@@ -472,7 +488,12 @@ body {
 }
 
 .negro-skin .menu-item.activo {
-    background-color: #000000;
+    background-color: #650675;
+}
+
+.negro-skin .boton-verde {
+    background-color: #9c27b0;
+    border: 5px solid #650675;
 }
 
 /* Tema Marrón (Vintage) */
@@ -508,4 +529,9 @@ body {
 
 .marron-skin .menu-item.activo {
     background-color: #5d4037;
+}
+
+.marron-skin .boton-verde {
+    background-color: #ffcc80;
+    border: 5px solid #81530f;
 }
