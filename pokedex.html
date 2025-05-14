@@ -3,76 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto Sinnoh</title>
+    <title>Pokédex de Sinnoh</title>
     <link rel="stylesheet" href="pokedex.css">
 </head>
 <body>
-        <!-- Contenedor principal de la Pokédex -->
     <div class="poke-contenedor rojo-skin">
         <!-- Selector de skins -->
         <div class="tema-selector">
-            <button class="tema-boton" id="cambiar-tema">Cambiar Skin</button>
+            <button class="tema-boton" id="cambiar-tema">Rojo</button>
             <div class="tema-lista" id="lista-temas">
                 <div class="tema-opcion" data-tema="rojo">Rojo</div>
-                <div class="tema-opcion" data-tema="azul">Agua </div>
+                <div class="tema-opcion" data-tema="azul">Agua</div>
                 <div class="tema-opcion" data-tema="verde">Planta</div>
-                <div class="tema-opcion" data-tema="negro">Fantasma </div>
-                <div class="tema-opcion" data-tema="marron">Vintage </div>
+                <div class="tema-opcion" data-tema="negro">Fantasma</div>
+                <div class="tema-opcion" data-tema="marron">Vintage</div>
             </div>
         </div>
+        
         <!-- Cuerpo de la Pokédex -->
         <div class="poke-cuerpo">
             <!-- Parte superior -->
             <div class="poke-cabecera">
                 <div class="luz-principal"></div>
                 <div class="area-titulo">
-                    <div class="texto-titulo">POKÉDEX DE<br>POKÉMON</div>
+                    <div class="texto-titulo">POKÉDEX DE<br/>SINNOH</div>
                     <div class="icono-pokeball"></div>
                 </div>
             </div>
-        
-        <!-- Pantalla principal -->
-        <div class="marco-pantalla">
-            <div class="pantalla">
-                 <!-- Menú principal -->
-                <div class="menu-principal">
+            
+            <!-- Pantalla principal -->
+            <div class="marco-pantalla">
+                <div class="pantalla">
+                    <!-- Sección de búsqueda (por defecto) -->
+                    <div id="seccion-busqueda" class="seccion-activa">
+                        <h3>BUSCAR POKÉMON</h3>
+                        <div class="campo-busqueda">
+                            <input 
+                                type="number" 
+                                id="pokemon-id" 
+                                placeholder="ID" 
+                                min="1" 
+                                max="210"
+                            >
+                            <button class="boton-buscar-input" id="btn-buscar">
+                                Buscar
+                            </button>
+                        </div>
+                        <div id="resultado-pokemon" class="resultado-pokemon" style="display: none;">
+                            <h3 class="pokemon-nombre" id="pokemon-nombre"></h3>
+                            <div class="pokemon-info-container">
+                                <img id="pokemon-imagen" class="pokemon-imagen" src="" alt="">
+                                <div class="pokemon-info">
+                                    <p class="info-item"><strong>Nº:</strong> <span id="pokemon-num"></span></p>
+                                    <p class="info-item"><strong>Tipo:</strong> <span id="pokemon-tipo"></span></p>
+                                    <p class="info-item"><strong>Alt:</strong> <span id="pokemon-altura"></span>m</p>
+                                    <p class="info-item"><strong>Peso:</strong> <span id="pokemon-peso"></span>kg</p>
+                                </div>
+                            </div>
+                            <div class="pokemon-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">HP</span>
+                                    <span class="stat-value" id="stat-hp">-</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">ATK</span>
+                                    <span class="stat-value" id="stat-atk">-</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">DEF</span>
+                                    <span class="stat-value" id="stat-def">-</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">SPD</span>
+                                    <span class="stat-value" id="stat-spd">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección de recomendación (oculta por defecto) -->
+                    <div id="seccion-recomendacion" class="seccion" style="display: none;">
+                        <h3>RECOMENDACIÓN:</h3>
+                        <div id="recomendacion-item" class="recomendacion-item" style="display: none;">
+                            <div class="recomendacion-info">
+                                <div class="recomendacion-header">
+                                    <span id="recomendacion-id-nombre">-</span>
+                                    <span class="icono-info">ℹ️</span>
+                                </div>
+                                <div class="recomendacion-detalles">
+                                    <img id="recomendacion-imagen" src="" alt="" class="pokemon-imagen-small">
+                                    <div class="recomendacion-stats">
+                                        <p>Tipo: <span id="recomendacion-tipo">-</span></p>
+                                        <div class="mini-stats">
+                                            <span>HP: <span id="recomendacion-hp">-</span></span>
+                                            <span>ATK: <span id="recomendacion-atk">-</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de información inferior -->
+            <div class="panel-datos">
+                <div class="datos-cabecera">
+                    <span>INFO</span>
+                    <span>POKEDEX</span>
+                </div>
+                <div class="datos-contenido" id="panel-descripcion">
+                    Busca Pokémon por ID. Usa los botones ↑/↓ para navegar por IDs y el botón → para ver Pokemons recomendados
+                </div>
+            </div>
+
+            <!-- Panel de control (cruceta y botones) -->
+            <div class="controles-panel">
+                <div class="controles">
+                    <div class="pad-direccional">
+                        <div class="boton-pad boton-arriba" id="boton-arriba"></div>
+                        <div class="boton-pad boton-derecha" id="boton-derecha"></div>
+                        <div class="boton-pad boton-abajo" id="boton-abajo"></div>
+                        <div class="boton-pad boton-izquierda" id="boton-izquierda"></div>
+                        <div class="boton-pad boton-centro"></div>
+                    </div>
                     
+                    <div class="botones-accion">
+                        <div class="boton-accion boton-verde" id="boton-b">B</div>
+                    </div>
                 </div>
             </div>
         </div>
-
-    <!-- Panel de información inferior -->
-    <div class="panel-datos">
-        <div class="datos-cabecera">
-            <span>OPCIÓN</span>
-            <span>MENÚ</span>
-        </div>
-        <div class="datos-contenido" id="descripcion-seccion">
-            SELECCIONA UNA<br> 
-            OPCIÓN DEL<br> 
-            MENÚ
-        </div>
     </div>
-
-    <!-- Panel de control (cruceta y botones) -->
-    <div class="controles-panel">
-        <div class="controles">
-            <div class="pad-direccional">
-                <div class="boton-pad boton-arriba" id="boton-arriba"></div>
-                <div class="boton-pad boton-derecha" id="boton-derecha"></div>
-                <div class="boton-pad boton-abajo" id="boton-abajo"></div>
-                <div class="boton-pad boton-izquierda" id="boton-izquierda"></div>
-                <div class="boton-pad boton-centro"></div>
-            </div>
-
-            <div class="botones-accion">
-                <div class="boton-accion boton-verde" id="boton-b"></div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
+    
     <script src="pokedex.js"></script>
-</body>    
+</body>
 </html>
