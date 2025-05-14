@@ -1,118 +1,4 @@
-// Variables globales
-let indiceMenuActual = 0;                             // Índice de la opción seleccionada
-const opcionesMenu = document.querySelectorAll('.menu-item');  // Lista de opciones
-const panelDescripcion = document.getElementById('descripcion-seccion');  // Panel de datos
-
-// Función de inicialización
-function inicializar() {
-    actualizarOpcionActiva();  // Resaltar opción activa
-    configurarEventos();       // Configurar eventos de botones
-    configurarSelectorTemas(); // Configurar selector de temas
-    actualizarDescripcion();   // Actualizar descripción mostrada
-}
-
-// Función para resaltar la opción activa
-function actualizarOpcionActiva() {
-    opcionesMenu.forEach((opcion, indice) => {
-        if (indice === indiceMenuActual) {
-            opcion.classList.add('activo');
-        } else {
-            opcion.classList.remove('activo');
-        }
-    });
-    
-    // Actualizar la descripción
-    actualizarDescripcion();
-}
-
-// Configurar eventos de los botones
-function configurarEventos() {
-    // Botones direccionales
-    document.getElementById('boton-arriba').addEventListener('click', () => navegarMenu(-1));
-    document.getElementById('boton-abajo').addEventListener('click', () => navegarMenu(1));
-    document.getElementById('boton-b').addEventListener('click', seleccionarOpcion);
-}
-
-// Configurar selector de temas
-function configurarSelectorTemas() {
-    const botonTema = document.getElementById('cambiar-tema');
-    const listaTemas = document.getElementById('lista-temas');
-    const opcionesTema = document.querySelectorAll('.tema-opcion');
-    const contenedor = document.querySelector('.poke-contenedor');
-    
-    // Mostrar/ocultar lista de temas
-    botonTema.addEventListener('click', () => {
-        listaTemas.classList.toggle('activo');
-    });
-    
-    // Cambiar tema al seleccionar una opción
-    opcionesTema.forEach(opcion => {
-        opcion.addEventListener('click', () => {
-            const nombreTema = opcion.getAttribute('data-tema');
-            
-            // Quitar todos los temas
-            contenedor.classList.remove('rojo-skin', 'azul-skin', 'verde-skin', 'negro-skin', 'marron-skin');
-            
-            // Aplicar el tema seleccionado
-            contenedor.classList.add(`${nombreTema}-skin`);
-            
-            // Cerrar la lista
-            listaTemas.classList.remove('activo');
-            
-            // Actualizar texto del botón
-            const textoTema = opcion.textContent;
-            botonTema.textContent = textoTema;
-            
-            // Guardar preferencia en almacenamiento local
-            localStorage.setItem('miTemaPokedex', nombreTema);
-        });
-    });
-    
-    // Cargar tema guardado (si existe)
-    const temaGuardado = localStorage.getItem('miTemaPokedex');
-    if (temaGuardado) {
-        contenedor.classList.remove('rojo-skin', 'azul-skin', 'verde-skin', 'negro-skin', 'marron-skin');
-        contenedor.classList.add(`${temaGuardado}-skin`);
-        
-        // Actualizar texto del botón
-        const opcionTema = document.querySelector(`.tema-opcion[data-tema="${temaGuardado}"]`);
-        if (opcionTema) {
-            botonTema.textContent = opcionTema.textContent;
-        }
-    }
-}
-
-// Navegar por el menú con botones arriba/abajo
-function navegarMenu(direccion) {
-    // Calcular nuevo índice (con bucle circular)
-    indiceMenuActual = (indiceMenuActual + direccion + opcionesMenu.length) % opcionesMenu.length;
-    actualizarOpcionActiva();
-}
-
-// Actualizar la descripción según la opción seleccionada
-function actualizarDescripcion() {
-    const opcionSeleccionada = opcionesMenu[indiceMenuActual];
-    const descripcion = opcionSeleccionada.getAttribute('data-info');
-    const nombrePagina = opcionSeleccionada.textContent;
-    
-    // Mostrar descripción en el panel de datos
-    panelDescripcion.innerHTML = descripcion || `Sección de<br>${nombrePagina}`;
-}
-
-// Seleccionar opción actual (con botón B) - Navega a una nueva página
-function seleccionarOpcion() {
-    const opcionSeleccionada = opcionesMenu[indiceMenuActual];
-    const rutaPagina = opcionSeleccionada.getAttribute('data-pagina');
-    
-    // Navegar a la página seleccionada
-    window.location.href = rutaPagina;
-}
-
-// Iniciar aplicación cuando el DOM esté cargado
-window.addEventListener('DOMContentLoaded', inicializar);
-
-/*  Constante de las id cambiadas (personalizadas) Este objeto mapea IDs personalizados a IDs reales de la API de Pokémon */
-
+// Mapeo de IDs personalizados a IDs reales de la API de Pokémon
 const pokemonDisponible = {
     "1": "387",
     "2": "388",
@@ -325,70 +211,279 @@ const pokemonDisponible = {
     "209": "359",
     "210": "487"
   };
-  
 
-/* Función para buscar un Pokémon 
-   Esta función asíncrona busca información de un Pokémon usando su ID */
-async function buscarPokemon(id = null) {
-    // Obtiene el ID del parámetro o del campo de entrada del formulario
-    let pokemonId = id || document.getElementById("pokemonId").value;
-    // Verifica si se proporcionó un ID
-    if (!pokemonId) return alert("Ingrese un ID de Pokémon");
-    // Verifica si el ID está en la lista de IDs personalizados disponibles
-    if (!pokemonDisponible[pokemonId]) return alert("ID de Pokémon invalida");
-    // Convierte el ID personalizado al ID real para la API
-    pokemonId=pokemonDisponible[pokemonId];
+// Variables globales
+let activeSection = "buscar"; // "buscar" o "recomendacion"
+let currentPokemonId = "";
+let recommendedPokemonId = "";
 
-    // Realiza una solicitud a la API de Pokémon para obtener los datos del Pokémon
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
-    // Verifica si la respuesta fue exitosa
-    if (!response.ok) return alert("Pokémon no encontrado");
-    // Convierte la respuesta a formato JSON
-    const data = await response.json();
+// Elementos DOM
+const seccionBusqueda = document.getElementById("seccion-busqueda");
+const seccionRecomendacion = document.getElementById("seccion-recomendacion");
+const resultadoPokemon = document.getElementById("resultado-pokemon");
+const recomendacionItem = document.getElementById("recomendacion-item");
+const panelDescripcion = document.getElementById("panel-descripcion");
+const pokemonIdInput = document.getElementById("pokemon-id");
 
-    // Realiza una solicitud adicional para obtener información de la especie del Pokémon
-    const speciesResponse = await fetch(data.species.url);
-    // Convierte la respuesta a formato JSON
-    const speciesData = await speciesResponse.json();
+// Inicialización
+document.addEventListener("DOMContentLoaded", () => {
+    // Configurar eventos
+    configurarEventos();
+    configurarSelectorTemas();
+    
+    // Generar recomendación inicial
+    recomendarPokemon();
+});
 
-    // Busca el nombre del Pokémon en español y lo convierte a mayúsculas
-    const nombre = speciesData.names.find(n => n.language.name === "es").name.toUpperCase();
-    // Actualiza el elemento HTML que muestra el nombre del Pokémon
-    document.getElementById("pokemonNombre").textContent = nombre;
-
-    // Obtiene y configura la imagen del Pokémon
-    const imagen = document.getElementById("pokemonImagen");
-    imagen.src = data.sprites.front_default; // Establece la URL de la imagen
-    imagen.style.display = "block"; // Hace visible la imagen
-
-    // Actualiza el elemento que muestra los tipos del Pokémon
-    document.getElementById("pokemonTipo").textContent = "Tipo: " + data.types.map(t => t.type.name).join(", ");
+// Configurar eventos
+function configurarEventos() {
+    // Botones direccionales
+    document.getElementById("boton-arriba").addEventListener("click", () => navegarPokemon(-1));
+    document.getElementById("boton-abajo").addEventListener("click", () => navegarPokemon(1));
+    document.getElementById("boton-derecha").addEventListener("click", toggleRecomendacion);
+    document.getElementById("boton-izquierda").addEventListener("click", mostrarBusqueda);
+    
+    // Botón B
+    document.getElementById("boton-b").addEventListener("click", () => {
+        if (activeSection === "buscar") {
+            buscarPokemon(pokemonIdInput.value);
+        } else if (activeSection === "recomendacion") {
+            // Usar el ID del Pokémon recomendado
+            pokemonIdInput.value = recommendedPokemonId;
+            buscarPokemon(recommendedPokemonId);
+            mostrarBusqueda();
+        }
+    });
+    
+    // Botón buscar
+    document.getElementById("btn-buscar").addEventListener("click", () => buscarPokemon(pokemonIdInput.value));
+    
+    // No necesitamos el evento para el botón de lupa en recomendación
+    // Ya que ahora usamos el botón B para ver detalles
 }
 
-/* Función para recomendar un Pokémon aleatorio 
-   Esta función selecciona un Pokémon aleatorio y muestra información básica */
+// Configurar selector de temas
+function configurarSelectorTemas() {
+    const botonTema = document.getElementById("cambiar-tema");
+    const listaTemas = document.getElementById("lista-temas");
+    const opcionesTema = document.querySelectorAll(".tema-opcion");
+    const contenedor = document.querySelector(".poke-contenedor");
+    
+    // Mostrar/ocultar lista de temas
+    botonTema.addEventListener("click", () => {
+        listaTemas.classList.toggle("activo");
+    });
+    
+    // Cambiar tema al seleccionar una opción
+    opcionesTema.forEach(opcion => {
+        opcion.addEventListener("click", () => {
+            const nombreTema = opcion.getAttribute("data-tema");
+            
+            // Quitar todos los temas
+            contenedor.classList.remove("rojo-skin", "azul-skin", "verde-skin", "negro-skin", "marron-skin");
+            
+            // Aplicar el tema seleccionado
+            contenedor.classList.add(`${nombreTema}-skin`);
+            
+            // Cerrar la lista
+            listaTemas.classList.remove("activo");
+            
+            // Actualizar texto del botón
+            botonTema.textContent = opcion.textContent;
+            
+            // Guardar preferencia en almacenamiento local
+            localStorage.setItem("miTemaPokedex", nombreTema);
+        });
+    });
+    
+    // Cargar tema guardado (si existe)
+    const temaGuardado = localStorage.getItem("miTemaPokedex");
+    if (temaGuardado) {
+        contenedor.classList.remove("rojo-skin", "azul-skin", "verde-skin", "negro-skin", "marron-skin");
+        contenedor.classList.add(`${temaGuardado}-skin`);
+        
+        // Actualizar texto del botón
+        const opcionTema = document.querySelector(`.tema-opcion[data-tema="${temaGuardado}"]`);
+        if (opcionTema) {
+            botonTema.textContent = opcionTema.textContent;
+        }
+    }
+}
+
+// Navegar entre IDs de Pokémon
+function navegarPokemon(direccion) {
+    if (activeSection === "buscar") {
+        const currentId = pokemonIdInput.value === "" ? "1" : pokemonIdInput.value;
+        const newId = Math.max(1, Math.min(210, parseInt(currentId) + direccion));
+        pokemonIdInput.value = newId;
+        buscarPokemon(newId.toString());
+    }
+}
+
+// Alternar entre secciones búsqueda y recomendación
+function toggleRecomendacion() {
+    if (activeSection === "buscar") {
+        activeSection = "recomendacion";
+        seccionBusqueda.style.display = "none";
+        seccionRecomendacion.style.display = "block";
+        panelDescripcion.textContent = "Pokémon recomendado. Pulsa el botón B para ver detalles";
+    } else {
+        mostrarBusqueda();
+    }
+}
+
+// Mostrar sección de búsqueda
+function mostrarBusqueda() {
+    activeSection = "buscar";
+    seccionRecomendacion.style.display = "none";
+    seccionBusqueda.style.display = "block";
+    panelDescripcion.textContent = "Busca Pokémon por ID. Usa los botones ↑/↓ para navegar por IDs";
+}
+
+// Buscar Pokémon por ID
+async function buscarPokemon(id) {
+    try {
+        // Validar ID
+        if (!id || id.trim() === "") {
+            alert("Ingrese un ID de Pokémon");
+            return;
+        }
+        
+        // Verificar si el ID existe en nuestro mapeo
+        if (!pokemonDisponible[id]) {
+            alert("ID de Pokémon inválido. Prueba con números entre 1-10 o 20-23");
+            return;
+        }
+        
+        const actualId = pokemonDisponible[id];
+        currentPokemonId = id;
+        
+        console.log("Buscando Pokémon con ID:", id, "API ID:", actualId);
+        
+        // Fetch de la información del Pokémon
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${actualId}`);
+        if (!response.ok) throw new Error("Pokémon no encontrado");
+        const data = await response.json();
+        
+        // Fetch de la especie para obtener el nombre en español
+        const speciesResponse = await fetch(data.species.url);
+        const speciesData = await speciesResponse.json();
+        
+        // Buscar nombre en español
+        const nombre = speciesData.names.find(n => n.language.name === "es")?.name.toUpperCase() || data.name.toUpperCase();
+        
+        // Calcular estadísticas
+        const stats = {
+            hp: data.stats.find(s => s.stat.name === "hp")?.base_stat || "?",
+            attack: data.stats.find(s => s.stat.name === "attack")?.base_stat || "?",
+            defense: data.stats.find(s => s.stat.name === "defense")?.base_stat || "?",
+            speed: data.stats.find(s => s.stat.name === "speed")?.base_stat || "?"
+        };
+        
+        // Actualizar la interfaz con la información del Pokémon
+        document.getElementById("pokemon-nombre").textContent = nombre;
+        document.getElementById("pokemon-imagen").src = data.sprites.front_default;
+        document.getElementById("pokemon-imagen").alt = nombre;
+        document.getElementById("pokemon-num").textContent = id;
+        document.getElementById("pokemon-tipo").textContent = data.types.map(t => t.type.name).join(", ");
+        document.getElementById("pokemon-altura").textContent = (data.height / 10).toFixed(1);
+        document.getElementById("pokemon-peso").textContent = (data.weight / 10).toFixed(1);
+        
+        // Actualizar estadísticas
+        document.getElementById("stat-hp").textContent = stats.hp;
+        document.getElementById("stat-atk").textContent = stats.attack;
+        document.getElementById("stat-def").textContent = stats.defense;
+        document.getElementById("stat-spd").textContent = stats.speed;
+        
+        // Mostrar el resultado
+        resultadoPokemon.style.display = "block";
+        
+    } catch (error) {
+        console.error("Error buscando Pokémon:", error);
+        alert("Error al buscar el Pokémon: " + error.message);
+    }
+}
+
+// Recomendar un Pokémon aleatorio
 async function recomendarPokemon() {
-    // Genera un ID aleatorio entre 1 y 210 (número total de Pokémon)
-    const randomId = Math.floor(Math.random() * 210) + 1;                                        
-    // Realiza una solicitud a la API para obtener datos del Pokémon aleatorio
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomId}`);
-    const data = await response.json();
-    // Obtiene información adicional de la especie del Pokémon
-    const speciesResponse = await fetch(data.species.url);
-    const speciesData = await speciesResponse.json();
-
-    // Obtiene el nombre en español del Pokémon
-    const nombre = speciesData.names.find(n => n.language.name === "es").name;
-    // Actualiza la lista de recomendaciones en el HTML
-    const recomendacionLista = document.getElementById("recomendacionLista");
-    // Crea un elemento HTML con la información del Pokémon recomendado
-    recomendacionLista.innerHTML = `<div class="recomendacion-item">
-        <span>#${randomId} - ${nombre}</span>
-        <img src="${data.sprites.front_default}" alt="Imagen de ${nombre}" width="50">
-        <button onclick="buscarPokemon(${randomId})">🔍</button>
-    </div>`;
+    try {
+        // Genera un ID aleatorio para demo
+        const availableIds = Object.keys(pokemonDisponible);
+        const randomIndex = Math.floor(Math.random() * availableIds.length);
+        const randomId = availableIds[randomIndex];
+        recommendedPokemonId = randomId;
+        
+        const actualId = pokemonDisponible[randomId];
+        
+        if (!actualId) {
+            console.error("ID no encontrado en el mapeo");
+            return;
+        }
+        
+        // Fetch de la información del Pokémon
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${actualId}`);
+        const data = await response.json();
+        
+        // Fetch de la especie para obtener el nombre en español
+        const speciesResponse = await fetch(data.species.url);
+        const speciesData = await speciesResponse.json();
+        
+        // Buscar nombre en español
+        const nombre = speciesData.names.find(n => n.language.name === "es")?.name || data.name;
+        
+        // Calcular estadísticas simples
+        const hp = data.stats.find(s => s.stat.name === "hp")?.base_stat || "?";
+        const attack = data.stats.find(s => s.stat.name === "attack")?.base_stat || "?";
+        
+        // Actualizar la interfaz con la recomendación
+        document.getElementById("recomendacion-id-nombre").textContent = `#${randomId} - ${nombre}`;
+        document.getElementById("recomendacion-imagen").src = data.sprites.front_default;
+        document.getElementById("recomendacion-imagen").alt = nombre;
+        document.getElementById("recomendacion-tipo").textContent = data.types.map(t => t.type.name).join(", ");
+        document.getElementById("recomendacion-hp").textContent = hp;
+        document.getElementById("recomendacion-atk").textContent = attack;
+        
+        // Mostrar la recomendación
+        recomendacionItem.style.display = "block";
+        
+    } catch (error) {
+        console.error("Error recomendando Pokémon:", error);
+    }
 }
 
-// Configura un temporizador para recomendar un nuevo Pokémon cada 60 segundos
-setInterval(recomendarPokemon, 60000);
+// Manejar eventos de teclado
+document.addEventListener("keydown", function(event) {
+    switch(event.key) {
+        case "ArrowUp":
+            navegarPokemon(-1);
+            break;
+        case "ArrowDown":
+            navegarPokemon(1);
+            break;
+        case "ArrowRight":
+            toggleRecomendacion();
+            break;
+        case "ArrowLeft":
+            mostrarBusqueda();
+            break;
+        case "Enter":
+        case "b":
+        case "B":
+            if (activeSection === "buscar") {
+                buscarPokemon(pokemonIdInput.value);
+            } else if (activeSection === "recomendacion") {
+                // También manejar la tecla B para recomendaciones
+                pokemonIdInput.value = recommendedPokemonId;
+                buscarPokemon(recommendedPokemonId);
+                mostrarBusqueda();
+            }
+            break;
+    }
+});
 
+// También permitir que al presionar Enter en el campo de entrada se busque el Pokémon
+pokemonIdInput.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        buscarPokemon(this.value);
+    }
+});
