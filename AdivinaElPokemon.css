@@ -27,6 +27,42 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Decoraciones laterales con elementos de Pokémon */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 250px;
+    pointer-events: none;
+    z-index: -1;
+    background-repeat: repeat-y;
+    opacity: 0.15;
+}
+
+body::before {
+    left: 0;
+    background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png'),
+                      url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png'),
+                      url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png'),
+                      url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png');
+    background-position: 10% 10%, 20% 30%, 15% 60%, 25% 85%;
+    background-size: 100px, 100px, 100px, 100px;
+}
+
+body::after {
+    right: 0;
+    background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/39.png'),
+                      url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png'),
+                      url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png'),
+                      url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png');
+    background-position: 90% 15%, 80% 40%, 85% 65%, 75% 90%;
+    background-size: 100px, 100px, 100px, 100px;
 }
 
 /* Encabezado principal */
@@ -199,7 +235,6 @@ a:hover {
     transform: scale(1.05);
 }
 
-
 /* Estilos específicos para cada pantalla */
 #pantalla-inicio {
     border-color: var(--pokemon-red);
@@ -259,8 +294,99 @@ a:hover {
     display: none;
 }
 
+/* Decoración adicional en la parte superior e inferior */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 250px;
+    pointer-events: none;
+    z-index: -1;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+}
+
+/* PokéBall decorativa en las esquinas */
+.pokeball-decoration {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--pokemon-red) 0%, var(--pokemon-red) 50%, white 50%, white 100%);
+    border-radius: 50%;
+    z-index: -1;
+    box-shadow: 0 0 10px rgba(0,0,0,1);
+}
+
+.pokeball-decoration::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border: 3px solid #333;
+    border-radius: 50%;
+}
+
+.pokeball-decoration::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+}
+
+/* Posicionamiento de las PokéBalls */
+.pokeball-topleft {
+    top: 20px;
+    left: 20px;
+}
+
+.pokeball-topright {
+    top: 20px;
+    right: 20px;
+}
+
+.pokeball-bottomleft {
+    bottom: 20px;
+    left: 20px;
+}
+
+.pokeball-bottomright {
+    bottom: 20px;
+    right: 20px;
+}
+
 /* Responsive design */
+@media (max-width: 1200px) {
+    body::before, 
+    body::after {
+        width: 180px;
+        background-size: 80px, 80px, 80px, 80px;
+    }
+}
+
+@media (max-width: 992px) {
+    body::before, 
+    body::after {
+        width: 120px;
+        background-size: 65px, 65px, 65px, 65px;
+    }
+}
+
 @media (max-width: 768px) {
+    body::before, 
+    body::after {
+        width: 80px;
+        background-size: 50px, 50px, 50px, 50px;
+    }
+    
     h1 {
         font-size: 2rem;
     }
@@ -280,9 +406,19 @@ a:hover {
     button {
         padding: 10px 20px;
     }
+    
+    .pokeball-decoration {
+        width: 40px;
+        height: 40px;
+    }
 }
 
 @media (max-width: 480px) {
+    body::before, 
+    body::after {
+        display: none;
+    }
+    
     h1 {
         font-size: 1.8rem;
     }
@@ -301,5 +437,15 @@ a:hover {
     
     input[type="text"], button {
         width: 100%;
+    }
+    
+    .pokeball-decoration {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .pokeball-decoration::before {
+        width: 8px;
+        height: 8px;
     }
 }

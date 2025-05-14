@@ -10,18 +10,24 @@
 <body> 
     <h1>¡Adivina el Pokémon!</h1> 
     
+    <!-- Decoraciones de PokéBall -->
+    <div class="pokeball-decoration pokeball-topleft"></div>
+    <div class="pokeball-decoration pokeball-topright"></div>
+    <div class="pokeball-decoration pokeball-bottomleft"></div>
+    <div class="pokeball-decoration pokeball-bottomright"></div>
+    
     <!-- Contenedor para la sección de instrucciones -->
     <div> 
         <h2>Instrucciones</h2> 
-        <p>Trata de adivinar el nombre del Pokémon misterioso. Tienes 3 intentos. Con cada fallo, recibirás una letra adicional como pista.</p> 
+        <p>Trata de adivinar el nombre del Pokémon misterioso de la 4ª generación. Tienes 3 intentos. Con cada fallo, recibirás una letra adicional como pista.</p> 
     </div> 
 
     <!-- PRIMERA PANTALLA: INICIO DEL JUEGO -->
     <div id="pantalla-inicio"> 
         <h2>¡Comienza el juego!</h2> 
         <p>El Pokémon misterioso te espera. ¿Podrás adivinarlo?</p> 
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/silhouettes/25.png" alt="Silueta de Pokémon" /> <!-- Imagen de silueta de Pokémon desde PokeAPI -->
-        <p>Pista inicial: <strong>P</strong>_ _ _ _ _ _</p> 
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/silhouettes/387.png" alt="Silueta de Pokémon" /> <!-- Imagen de silueta de Pokémon desde PokeAPI -->
+        <p>Pista inicial: <strong>T</strong>_ _ _ _ _ _</p> 
         
         <!-- Formulario que se envía a la misma página con ancla #intento1 -->
         <form action="#intento1"> 
@@ -34,8 +40,8 @@
     <!-- SEGUNDA PANTALLA: PRIMER FALLO -->
     <div id="intento1"> 
         <h2>¡Primer intento fallido!</h2> 
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/silhouettes/25.png" alt="Silueta de Pokémon" /> <!-- Misma imagen de silueta -->
-        <p>Pista actual: <strong>Pi</strong>_ _ _ _ _</p> 
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/silhouettes/387.png" alt="Silueta de Pokémon" /> <!-- Misma imagen de silueta -->
+        <p>Pista actual: <strong>Tu</strong>_ _ _ _ _</p> 
         <p>Respuesta anterior: <span style="color: red;">Incorrecta</span></p> 
         
         <!-- Formulario para el segundo intento -->
@@ -49,8 +55,8 @@
     <!-- TERCERA PANTALLA: SEGUNDO FALLO -->
     <div id="intento2"> 
         <h2>¡Segundo intento fallido!</h2> 
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/silhouettes/25.png" alt="Silueta de Pokémon" /> <!-- Misma imagen de silueta -->
-        <p>Pista actual: <strong>Pik</strong>_ _ _ _</p> 
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/silhouettes/387.png" alt="Silueta de Pokémon" /> <!-- Misma imagen de silueta -->
+        <p>Pista actual: <strong>Tur</strong>_ _ _ _</p> 
         <p>Respuestas anteriores: <span style="color: red;">Incorrectas</span></p> 
         
 
@@ -69,16 +75,15 @@
         <!-- Versión si pierde -->
         <div id="derrota"> 
             <h3>¡Has perdido!</h3> 
-            <p>Se te acabaron los intentos. El Pokémon misterioso era: <strong>Pikachu</strong></p> 
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu" /> <!-- Muestra la imagen completa del Pokémon -->
+            <p>Se te acabaron los intentos. El Pokémon misterioso era: <strong>Turtwig</strong></p> 
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/387.png" alt="Turtwig" /> <!-- Muestra la imagen completa del Pokémon -->
         </div> <!-- Cierra el contenedor de derrota -->
         
         <!-- Opción para reiniciar el juego -->
         <p><a href="#">¡Jugar de nuevo!</a></p> 
     </div> 
-
-    <footer> 
-        
-    </footer> 
+    
+    <!-- Script JavaScript para la funcionalidad -->
+    <script src="AdivinaElPokemon.js"></script>
 </body> 
-</html> 
+</html>
