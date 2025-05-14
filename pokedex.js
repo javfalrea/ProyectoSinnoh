@@ -326,7 +326,7 @@ function toggleRecomendacion() {
         activeSection = "recomendacion";
         seccionBusqueda.style.display = "none";
         seccionRecomendacion.style.display = "block";
-        panelDescripcion.textContent = "Pokémon recomendado. Pulsa el botón B para ver detalles";
+        panelDescripcion.textContent = "Pokémon recomendado. Pulsa el botón para ver detalles";
     } else {
         mostrarBusqueda();
     }
@@ -337,7 +337,7 @@ function mostrarBusqueda() {
     activeSection = "buscar";
     seccionRecomendacion.style.display = "none";
     seccionBusqueda.style.display = "block";
-    panelDescripcion.textContent = "Busca Pokémon por ID. Usa los botones ↑/↓ para navegar por IDs";
+    panelDescripcion.textContent = "Busca Pokémon por ID. Usa los botones ↑/↓ para navegar por IDs y el botón → para ver Pokemons recomendados";
 }
 
 // Buscar Pokémon por ID
@@ -348,12 +348,7 @@ async function buscarPokemon(id) {
             alert("Ingrese un ID de Pokémon");
             return;
         }
-        
-        // Verificar si el ID existe en nuestro mapeo
-        if (!pokemonDisponible[id]) {
-            alert("ID de Pokémon inválido. Prueba con números entre 1-10 o 20-23");
-            return;
-        }
+
         
         const actualId = pokemonDisponible[id];
         currentPokemonId = id;

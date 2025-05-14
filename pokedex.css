@@ -12,8 +12,7 @@ body {
     align-items: center;
     min-height: 100vh;
     padding: 20px;
-    background-color: #f0f0f0;
-    background-image: radial-gradient(circle, #ffffff, #d0d0d0);
+    background-image: url(https://cdna.artstation.com/p/assets/images/images/043/905/278/large/meltyrice-image-2021-12-03-143809.jpg?1638560349);
 }
 
 /* Contenedor principal */
