@@ -77,10 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-      /**
-     * Actualiza todas las imágenes del juego con la información del Pokémon actual
-     * Se llama después de seleccionar un nuevo Pokémon
-     */
+
     function actualizarImagenes() {
         // Actualizamos todas las imágenes de siluetas en las pantallas de intento
         imgSiluetas.forEach(img => {
