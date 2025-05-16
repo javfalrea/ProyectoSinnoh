@@ -77,4 +77,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
+      /**
+     * Actualiza todas las imágenes del juego con la información del Pokémon actual
+     * Se llama después de seleccionar un nuevo Pokémon
+     */
+    function actualizarImagenes() {
+        // Actualizamos todas las imágenes de siluetas en las pantallas de intento
+        imgSiluetas.forEach(img => {
+            img.src = pokemonActual.silueta;  // Cambiamos la URL a la silueta del Pokémon actual
+            img.alt = `Silueta de ${nombrePokemon}`; // Actualizamos el texto alternativo
+        });
+        
+        // Actualizamos la imagen final (la que se muestra cuando termina el juego)
+        const imgFinal = document.querySelector('#final img');
+        imgFinal.src = pokemonActual.imagen;  // URL de la imagen a color del Pokémon
+        imgFinal.alt = nombrePokemon;         // Texto alternativo con el nombre
+        
+        // Actualizamos el texto del resultado que muestra el nombre del Pokémon
+        const textoResultado = document.querySelector('#derrota p strong');
+        textoResultado.textContent = nombrePokemon;
+    }
+    
+    function actualizarPistas() {
+        // Obtenemos el nombre completo del Pokémon actual
+        const nombreCompleto = nombrePokemon;
+        
+        // Actualizamos la pista en la pantalla inicial
+        const pistaInicial = document.querySelector('#pantalla-inicio p:nth-of-type(2)');
+        
+        // Construimos el texto de la pista: primera letra en negrita + guiones bajos
+        let pistaTexto = `Pista inicial: <strong>${nombreCompleto.charAt(0)}</strong>`;
+        for (let i = 1; i < nombreCompleto.length; i++) {
+            pistaTexto += '_ '; // Añadimos un guión bajo por cada letra restante
+        }
+        pistaInicial.innerHTML = pistaTexto; // Insertamos el HTML con la pista
+        
+        const pistaIntento1 = document.querySelector('#intento1 p:nth-of-type(1)');
+        
+        // Construimos el texto con las dos primeras letras en negrita + guiones
+        pistaTexto = `Pista actual: <strong>${nombreCompleto.substring(0, 2)}</strong>`;
+        for (let i = 2; i < nombreCompleto.length; i++) {
+            pistaTexto += '_ ';
+        }
+        pistaIntento1.innerHTML = pistaTexto;
+        
+        const pistaIntento2 = document.querySelector('#intento2 p:nth-of-type(1)');
+        
+        // Construimos el texto con las tres primeras letras en negrita + guiones
+        pistaTexto = `Pista actual: <strong>${nombreCompleto.substring(0, 3)}</strong>`;
+        for (let i = 3; i < nombreCompleto.length; i++) {
+            pistaTexto += '_ ';
+        }
+        pistaIntento2.innerHTML = pistaTexto;
+    }
 })
