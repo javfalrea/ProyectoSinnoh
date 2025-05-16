@@ -207,4 +207,54 @@ document.addEventListener('DOMContentLoaded', () => {
         reiniciarJuego();
     }
 
-})
+    
+    botones.comenzar.addEventListener('click', iniciarJuego);
+    
+    
+    formularios.forEach(form => {
+        form.addEventListener('submit', (event) => {
+            // Evitamos que el formulario recargue la página
+            event.preventDefault();
+            
+            // Obtenemos el campo de texto del formulario
+            const input = form.querySelector('input[type="text"]');
+            if (!input) return; // Si no hay campo de texto, no hacemos nada
+            
+            // Obtenemos la respuesta y eliminamos espacios en blanco al inicio y final
+            const respuesta = input.value.trim();
+            
+            // Comprobamos si la respuesta es correcta
+            if (comprobarRespuesta(respuesta)) {
+                // ¡Victoria! - Terminamos el juego inmediatamente
+                mostrarVictoria();
+            } else {
+                // Respuesta incorrecta - Reducimos intentos y aumentamos pistas
+                intentosRestantes--;
+                pistasMostradas++;
+                
+                // Ocultamos todas las pantallas
+                ocultarTodo();
+                
+                // Mostramos la pantalla correspondiente según los intentos restantes
+                if (intentosRestantes === 0) {
+                    // Sin intentos - Mostramos derrota
+                    mostrarDerrota();
+                } else if (intentosRestantes === 2) {
+                    // Quedan 2 intentos - Mostramos segundo intento (primer fallo)
+                    pantallas.intento1.style.display = 'flex';
+                } else if (intentosRestantes === 1) {
+                    // Queda 1 intento - Mostramos tercer intento (segundo fallo)
+                    pantallas.intento2.style.display = 'flex';
+                }
+            }
+        });
+    });
+    
+    document.addEventListener('click', (event) => {
+        if (event.target.classList.contains('btn-reiniciar')) {
+            event.preventDefault(); // Evitamos el comportamiento predeterminado del enlace
+            reiniciarJuego();       // Reiniciamos el juego
+        }
+    });
+
+});
