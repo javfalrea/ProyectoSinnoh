@@ -127,4 +127,84 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         pistaIntento2.innerHTML = pistaTexto;
     }
+
+
+    function comprobarRespuesta(respuesta) {
+        // Comparamos la respuesta con el nombre del Pokémon (ignorando mayúsculas/minúsculas)
+        return respuesta.toLowerCase() === nombrePokemon.toLowerCase();
+    }
+    
+
+    function mostrarVictoria() {
+        // Cambiamos el título de la pantalla final
+        document.querySelector('#final h2').textContent = '¡Juego terminado!';
+        
+        // Actualizamos el contenido del div de resultado para mostrar victoria
+        document.getElementById('derrota').innerHTML = `
+            <h3>¡Has ganado!</h3>
+            <p>¡Felicidades! Has adivinado correctamente: <strong>${nombrePokemon}</strong></p>
+            <img src="${pokemonActual.imagen}" alt="${nombrePokemon}" />
+        `;
+        
+        // Ocultamos todas las pantallas y mostramos solo la final
+        ocultarTodo();
+        pantallas.final.style.display = 'flex';
+    }
+    
+
+    function mostrarDerrota() {
+        // Cambiamos el título de la pantalla final
+        document.querySelector('#final h2').textContent = '¡Juego terminado!';
+        
+        // Actualizamos el contenido del div de resultado para mostrar derrota
+        document.getElementById('derrota').innerHTML = `
+            <h3>¡Has perdido!</h3>
+            <p>Se te acabaron los intentos. El Pokémon misterioso era: <strong>${nombrePokemon}</strong></p>
+            <img src="${pokemonActual.imagen}" alt="${nombrePokemon}" />
+        `;
+        
+        // Ocultamos todas las pantallas y mostramos solo la final
+        ocultarTodo();
+        pantallas.final.style.display = 'flex';
+    }
+    
+
+    function ocultarTodo() {
+        // Ocultamos todas las pantallas del juego
+        for (const key in pantallas) {
+            if (pantallas[key]) {
+                pantallas[key].style.display = 'none';
+            }
+        }
+        
+        // Ocultamos también los botones iniciales y las instrucciones
+        botonesIniciales.style.display = 'none';
+        instrucciones.style.display = 'none';
+    }
+
+
+    function reiniciarJuego() {
+        // Restauramos los contadores a sus valores iniciales
+        intentosRestantes = 3;    // Tres intentos disponibles
+        pistasMostradas = 1;      // Una letra revelada al inicio
+        
+        // Ocultamos todo y mostramos solo la pantalla inicial del juego
+        ocultarTodo();
+        pantallas.inicio.style.display = 'flex';
+        
+        // Seleccionamos un nuevo Pokémon aleatorio
+        seleccionarPokemonAleatorio();
+        
+        // Limpiamos todos los campos de texto para la nueva partida
+        document.querySelectorAll('input[type="text"]').forEach(input => {
+            input.value = '';
+        });
+    }
+    
+
+    function iniciarJuego() {
+        // Simplemente llamamos a reiniciarJuego que configura todo lo necesario
+        reiniciarJuego();
+    }
+
 })
