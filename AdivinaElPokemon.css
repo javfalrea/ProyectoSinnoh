@@ -1,26 +1,31 @@
 /* Estilos generales y variables */
 :root {
-    --pokemon-red: #ef4036;
-    --pokemon-blue: #0a85c7;
-    --pokemon-yellow: #ffcb05;
-    --pokemon-light-blue: #2c9dcf;
+    --pokemon-red: #ff3636;
+    --pokemon-blue: #3498db;
+    --pokemon-yellow: #ffd900;
+    --pokemon-light-blue: #5dade2;
     --pokemon-dark-blue: #1a3a66;
-    --pokemon-light-gray: #f2f2f2;
-    --pokemon-shadow: rgba(0, 0, 0, 0.2);
-    --border-radius: 12px;
+    --pokemon-green: #2ecc71;
+    --pokemon-purple: #9b59b6;
+    --pokemon-light-gray: #f5f7fa;
+    --pokemon-dark-gray: #34495e;
+    --pokemon-shadow: rgba(0, 0, 0, 0.15);
+    --border-radius: 15px;
+    --transition-speed: 0.3s;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
+    font-family: 'Montserrat', 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
 }
 
 body {
-    background-color: #f5f5f5;
-    background-image: linear-gradient(135deg, #ffffff 0%, #e8f5ff 100%);
-    color: #333;
+    background: linear-gradient(135deg, #f6f8fc 0%, #e0f0ff 100%);
+    color: var(--pokemon-dark-gray);
     line-height: 1.6;
     padding: 20px;
     min-height: 100vh;
@@ -31,49 +36,39 @@ body {
     overflow-x: hidden;
 }
 
-/* Decoraciones laterales con elementos de Pokémon */
-body::before,
-body::after {
+/* Patrón de fondo con siluetas de Pokémon */
+body::before {
     content: "";
     position: fixed;
     top: 0;
-    height: 100%;
-    width: 250px;
-    pointer-events: none;
-    z-index: -1;
-    background-repeat: repeat-y;
-    opacity: 0.15;
-}
-
-body::before {
     left: 0;
-    background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png'),
-                      url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png'),
-                      url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png'),
-                      url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png');
-    background-position: 10% 10%, 20% 30%, 15% 60%, 25% 85%;
-    background-size: 100px, 100px, 100px, 100px;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.png');
+    background-size: 80px;
+    opacity: 0.03;
+    z-index: -2;
+    pointer-events: none;
+    animation: floatBackground 60s linear infinite;
 }
 
-body::after {
-    right: 0;
-    background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/39.png'),
-                      url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png'),
-                      url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png'),
-                      url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png');
-    background-position: 90% 15%, 80% 40%, 85% 65%, 75% 90%;
-    background-size: 100px, 100px, 100px, 100px;
+@keyframes floatBackground {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
 }
 
-/* Encabezado principal */
+/* Encabezado principal con efecto especial */
 h1 {
     color: var(--pokemon-blue);
     text-align: center;
-    font-size: 2.5rem;
-    margin: 20px 0;
-    text-shadow: 2px 2px 4px var(--pokemon-shadow);
+    font-size: 3rem;
+    margin: 30px 0;
+    text-shadow: 3px 3px 0 var(--pokemon-yellow), 
+                 6px 6px 0 var(--pokemon-shadow);
     position: relative;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
+    letter-spacing: 1px;
+    font-weight: 800;
 }
 
 h1::after {
@@ -82,45 +77,102 @@ h1::after {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 60%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--pokemon-red), var(--pokemon-blue), var(--pokemon-yellow));
-    border-radius: 2px;
+    width: 80%;
+    height: 6px;
+    background: linear-gradient(90deg, 
+        var(--pokemon-red), 
+        var(--pokemon-yellow), 
+        var(--pokemon-blue), 
+        var(--pokemon-green), 
+        var(--pokemon-purple));
+    border-radius: 3px;
+    box-shadow: 0 2px 5px var(--pokemon-shadow);
 }
 
 h2 {
     color: var(--pokemon-dark-blue);
-    margin: 15px 0;
-    font-size: 1.8rem;
+    margin: 20px 0;
+    font-size: 2rem;
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--pokemon-yellow);
+    transform: scaleX(0);
+    transition: transform var(--transition-speed) ease;
+}
+
+div:hover h2::after {
+    transform: scaleX(1);
 }
 
 h3 {
     color: var(--pokemon-red);
-    margin: 10px 0;
-    font-size: 1.5rem;
+    margin: 15px 0;
+    font-size: 1.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/* Contenedores principales */
+/* Contenedores principales con mejores efectos */
 div {
     background-color: white;
     border-radius: var(--border-radius);
-    padding: 25px;
-    margin: 20px 0;
-    box-shadow: 0 5px 15px var(--pokemon-shadow);
+    padding: 30px;
+    margin: 25px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 
+                0 6px 10px rgba(0, 0, 0, 0.05);
     width: 100%;
-    max-width: 600px;
+    max-width: 650px;
+    transition: transform var(--transition-speed), 
+                box-shadow var(--transition-speed);
 }
 
-div#pantalla-inicio, div#intento1, div#intento2, div#final {
+div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12), 
+                0 8px 15px rgba(0, 0, 0, 0.08);
+}
+
+div#pantalla-inicio, 
+div#intento1, 
+div#intento2, 
+div#final {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 3px solid var(--pokemon-yellow);
     position: relative;
     overflow: hidden;
+    border: none;
 }
 
-div#pantalla-inicio::before, div#intento1::before, div#intento2::before, div#final::before {
+/* Bordes dinámicos */
+div#pantalla-inicio::before, 
+div#intento1::before, 
+div#intento2::before, 
+div#final::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, var(--pokemon-red), var(--pokemon-blue), var(--pokemon-yellow));
+    z-index: 1;
+}
+
+div#pantalla-inicio::after, 
+div#intento1::after, 
+div#intento2::after, 
+div#final::after {
     content: '';
     position: absolute;
     top: 0;
@@ -128,195 +180,298 @@ div#pantalla-inicio::before, div#intento1::before, div#intento2::before, div#fin
     width: 100%;
     height: 100%;
     background-image: url('https://i.postimg.cc/52StvkLj/pokeball-pattern.png');
-    background-size: 100px;
-    opacity: 0.03;
+    background-size: 120px;
+    opacity: 0.04;
     pointer-events: none;
+    z-index: 0;
 }
 
-/* Estilos para imágenes */
+/* Estilos para la imagen con efectos mejorados */
 img {
-    max-width: 200px;
+    max-width: 220px;
     height: auto;
-    margin: 15px 0;
-    filter: drop-shadow(0 4px 8px var(--pokemon-shadow));
-    transition: transform 0.3s ease;
+    margin: 20px 0;
+    filter: drop-shadow(0 8px 15px var(--pokemon-shadow));
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 2;
 }
 
 img:hover {
-    transform: scale(1.05);
+    transform: scale(1.1) rotate(3deg);
+    filter: drop-shadow(0 12px 20px var(--pokemon-shadow));
+}
+
+/* Estilo para convertir imágenes normales en siluetas */
+.silueta-pokemon {
+    filter: brightness(0) contrast(1) !important;
+    opacity: 0.9;
+    transition: transform 0.4s ease;
+}
+
+.silueta-pokemon:hover {
+    transform: scale(1.1);
 }
 
 /* Estilos para párrafos y texto */
 p {
-    font-size: 1.1rem;
-    margin: 12px 0;
+    font-size: 1.15rem;
+    margin: 15px 0;
     text-align: center;
-    max-width: 500px;
+    max-width: 520px;
+    line-height: 1.7;
 }
 
 p strong {
     color: var(--pokemon-red);
-    font-size: 1.2rem;
-    letter-spacing: 1px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
 }
 
-/* Formularios y campos de entrada */
+p strong::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--pokemon-red);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+p:hover strong::after {
+    transform: scaleX(1);
+}
+
+/* Pistas con mejor visualización */
+p:nth-of-type(1), p:nth-of-type(2) {
+    background-color: var(--pokemon-light-gray);
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+    font-weight: 600;
+}
+
+/* Formularios y campos de entrada mejorados */
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 400px;
-    margin: 15px 0;
+    max-width: 450px;
+    margin: 20px 0;
 }
 
 label {
-    font-weight: bold;
-    margin-bottom: 8px;
+    font-weight: 700;
+    margin-bottom: 10px;
     color: var(--pokemon-dark-blue);
+    font-size: 1.1rem;
 }
 
 input[type="text"] {
     width: 100%;
-    padding: 12px 15px;
-    margin: 8px 0;
+    padding: 14px 18px;
+    margin: 10px 0;
     border: 2px solid var(--pokemon-light-blue);
     border-radius: var(--border-radius);
-    font-size: 1rem;
+    font-size: 1.1rem;
     outline: none;
-    transition: border-color 0.3s;
+    transition: all var(--transition-speed);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 input[type="text"]:focus {
     border-color: var(--pokemon-blue);
-    box-shadow: 0 0 0 3px rgba(10, 133, 199, 0.3);
+    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.25);
+    transform: translateY(-2px);
 }
 
+/* Botones estilo Pokémon */
 button {
     background-color: var(--pokemon-blue);
     color: white;
     border: none;
     border-radius: var(--border-radius);
-    padding: 12px 24px;
-    margin: 15px 0;
-    font-size: 1rem;
-    font-weight: bold;
+    padding: 15px 30px;
+    margin: 18px 0;
+    font-size: 1.1rem;
+    font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 4px 0 var(--pokemon-dark-blue);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 5px 0 var(--pokemon-dark-blue), 
+                0 5px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 button:hover {
     background-color: var(--pokemon-light-blue);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 0 var(--pokemon-dark-blue), 
+                0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 button:active {
     transform: translateY(2px);
-    box-shadow: 0 2px 0 var(--pokemon-dark-blue);
+    box-shadow: 0 3px 0 var(--pokemon-dark-blue), 
+                0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Enlaces */
+button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s;
+    z-index: 1;
+}
+
+button:hover::before {
+    transform: translate(-50%, -50%) scale(20);
+    opacity: 0;
+}
+
+/* Enlaces con efecto de PokéBall */
 a {
     color: var(--pokemon-red);
     text-decoration: none;
-    font-weight: bold;
-    padding: 10px 20px;
+    font-weight: 700;
+    padding: 12px 25px;
     border: 2px solid var(--pokemon-red);
     border-radius: var(--border-radius);
-    transition: all 0.3s;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: inline-block;
-    margin-top: 10px;
+    margin: 12px 8px;
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+    z-index: 1;
+}
+
+a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: var(--pokemon-red);
+    transition: transform 0.4s;
+    transform: translateY(-100%);
+    z-index: -1;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: white;
+    transition: transform 0.4s;
+    transform: translateY(100%);
+    z-index: -1;
 }
 
 a:hover {
-    background-color: var(--pokemon-red);
     color: white;
+    border-color: var(--pokemon-dark-blue);
     transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+a:hover::before {
+    transform: translateY(0);
+}
+
+a:hover::after {
+    transform: translateY(0);
+    background-color: var(--pokemon-red);
+}
+
+a.btn-reiniciar {
+    background-color: var(--pokemon-green);
+    color: white;
+    border-color: var(--pokemon-green);
+}
+
+a.btn-reiniciar:hover {
+    background-color: #27ae60;
+    border-color: #27ae60;
+}
+
+a.btn-inicio {
+    background-color: var(--pokemon-blue);
+    color: white;
+    border-color: var(--pokemon-blue);
+}
+
+a.btn-inicio:hover {
+    background-color: var(--pokemon-light-blue);
+    border-color: var(--pokemon-light-blue);
 }
 
 /* Estilos específicos para cada pantalla */
 #pantalla-inicio {
-    border-color: var(--pokemon-red);
+    border-top: 5px solid var(--pokemon-red);
 }
 
 #intento1 {
-    border-color: var(--pokemon-yellow);
+    border-top: 5px solid var(--pokemon-yellow);
 }
 
 #intento2 {
-    border-color: var(--pokemon-blue);
+    border-top: 5px solid var(--pokemon-blue);
 }
 
 #final {
-    border-color: var(--pokemon-dark-blue);
+    border-top: 5px solid var(--pokemon-green);
 }
 
-/* Estilos de derrota */
+/* Estilos de derrota y victoria mejorados */
 #derrota {
-    background-color: rgba(239, 64, 54, 0.1);
-    border: 2px dashed var(--pokemon-red);
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 3px solid var(--pokemon-red);
+    border-radius: var(--border-radius);
+    position: relative;
+    padding: 25px;
+    margin-top: 30px;
 }
 
-/* Estilos para mostrar/ocultar pantallas */
-#intento1, #intento2, #final {
-    display: none;
-}
-
-#pantalla-inicio:target {
-    display: flex;
-}
-
-#intento1:target {
-    display: flex;
-}
-
-#intento1:target ~ #pantalla-inicio {
-    display: none;
-}
-
-#intento2:target {
-    display: flex;
-}
-
-#intento2:target ~ #pantalla-inicio,
-#intento2:target ~ #intento1 {
-    display: none;
-}
-
-#final:target {
-    display: flex;
-}
-
-#final:target ~ #pantalla-inicio,
-#final:target ~ #intento1,
-#final:target ~ #intento2 {
-    display: none;
-}
-
-/* Decoración adicional en la parte superior e inferior */
-body::before,
-body::after {
-    content: "";
-    position: fixed;
+#derrota::before {
+    content: '';
+    position: absolute;
     top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    width: 250px;
-    pointer-events: none;
+    background: radial-gradient(circle, transparent 30%, rgba(255, 54, 54, 0.05) 70%);
     z-index: -1;
-    background-repeat: no-repeat;
-    opacity: 0.15;
 }
 
-/* PokéBall decorativa en las esquinas */
+/* PokéBall decorativas en las esquinas con animación */
 .pokeball-decoration {
     position: fixed;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(to bottom, var(--pokemon-red) 0%, var(--pokemon-red) 50%, white 50%, white 100%);
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(to bottom, var(--pokemon-red) 0%, var(--pokemon-red) 48%, white 48%, white 52%, white 100%);
     border-radius: 50%;
     z-index: -1;
-    box-shadow: 0 0 10px rgba(0,0,0,1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease;
+    animation: float 5s ease-in-out infinite;
 }
 
 .pokeball-decoration::before {
@@ -325,11 +480,12 @@ body::after {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 15px;
-    height: 15px;
+    width: 18px;
+    height: 18px;
     background-color: white;
-    border: 3px solid #333;
+    border: 4px solid #333;
     border-radius: 50%;
+    z-index: 2;
 }
 
 .pokeball-decoration::after {
@@ -338,93 +494,226 @@ body::after {
     top: 50%;
     left: 0;
     width: 100%;
-    height: 3px;
+    height: 4px;
     background-color: #333;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+    100% { transform: translateY(0) rotate(0deg); }
 }
 
 /* Posicionamiento de las PokéBalls */
 .pokeball-topleft {
-    top: 20px;
-    left: 20px;
+    top: 30px;
+    left: 30px;
+    animation-delay: 0s;
 }
 
 .pokeball-topright {
-    top: 20px;
-    right: 20px;
+    top: 30px;
+    right: 30px;
+    animation-delay: 1.5s;
 }
 
 .pokeball-bottomleft {
-    bottom: 20px;
-    left: 20px;
+    bottom: 30px;
+    left: 30px;
+    animation-delay: 0.5s;
 }
 
 .pokeball-bottomright {
-    bottom: 20px;
-    right: 20px;
+    bottom: 30px;
+    right: 30px;
+    animation-delay: 1s;
 }
 
-/* Responsive design */
+/* Animación para las transiciones entre pantallas */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+#pantalla-inicio, #intento1, #intento2, #final {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Instrucciones con mejor diseño */
+.instrucciones {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid var(--pokemon-yellow);
+}
+
+.instrucciones h2 {
+    color: var(--pokemon-dark-blue);
+    border-bottom: 3px solid var(--pokemon-yellow);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.instrucciones p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Botones principales más atractivos */
+.botones-principales {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.botones-principales:hover {
+    transform: none;
+}
+
+.btn-principal {
+    background: linear-gradient(45deg, var(--pokemon-blue), var(--pokemon-light-blue));
+    color: white;
+    padding: 16px 35px;
+    font-size: 1.3rem;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 6px 0 var(--pokemon-dark-blue), 
+                0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-principal:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 0 var(--pokemon-dark-blue), 
+                0 15px 25px rgba(0, 0, 0, 0.25);
+}
+
+.btn-principal:active {
+    transform: translateY(2px);
+    box-shadow: 0 4px 0 var(--pokemon-dark-blue), 
+                0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-principal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.7s;
+    z-index: -1;
+}
+
+.btn-principal:hover::before {
+    left: 100%;
+}
+
+/* Estilos para mostrar/ocultar pantallas con transiciones */
+#intento1, #intento2, #final {
+    display: none;
+    transition: all 0.5s ease;
+}
+
+/* Responsive design mejorado */
 @media (max-width: 1200px) {
-    body::before, 
-    body::after {
-        width: 180px;
-        background-size: 80px, 80px, 80px, 80px;
+    .pokeball-decoration {
+        width: 60px;
+        height: 60px;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
     }
 }
 
 @media (max-width: 992px) {
-    body::before, 
-    body::after {
-        width: 120px;
-        background-size: 65px, 65px, 65px, 65px;
+    .pokeball-decoration {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .pokeball-decoration::before {
+        width: 14px;
+        height: 14px;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+        text-shadow: 2px 2px 0 var(--pokemon-yellow), 
+                     4px 4px 0 var(--pokemon-shadow);
     }
 }
 
 @media (max-width: 768px) {
-    body::before, 
-    body::after {
-        width: 80px;
-        background-size: 50px, 50px, 50px, 50px;
-    }
-    
     h1 {
         font-size: 2rem;
     }
     
     h2 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
     
     div {
-        padding: 15px;
+        padding: 20px;
     }
     
     img {
-        max-width: 150px;
+        max-width: 180px;
     }
     
-    button {
-        padding: 10px 20px;
+    button, a {
+        padding: 12px 20px;
+        font-size: 1rem;
     }
     
     .pokeball-decoration {
         width: 40px;
         height: 40px;
     }
+    
+    .pokeball-decoration::before {
+        width: 10px;
+        height: 10px;
+        border-width: 3px;
+    }
+    
+    .pokeball-decoration::after {
+        height: 3px;
+    }
+    
+    .btn-principal {
+        padding: 14px 25px;
+        font-size: 1.1rem;
+    }
+    
+    @keyframes float {
+        0% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-8px) rotate(3deg); }
+        100% { transform: translateY(0) rotate(0deg); }
+    }
 }
 
 @media (max-width: 480px) {
-    body::before, 
-    body::after {
-        display: none;
-    }
-    
     h1 {
         font-size: 1.8rem;
+        margin: 20px 0;
     }
     
     h2 {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
     }
     
     p {
@@ -432,11 +721,13 @@ body::after {
     }
     
     img {
-        max-width: 120px;
+        max-width: 150px;
     }
     
-    input[type="text"], button {
+    input[type="text"], button, a {
         width: 100%;
+        font-size: 0.95rem;
+        padding: 10px 16px;
     }
     
     .pokeball-decoration {
@@ -447,5 +738,24 @@ body::after {
     .pokeball-decoration::before {
         width: 8px;
         height: 8px;
+    }
+    
+    .pokeball-decoration::after {
+        height: 2px;
+    }
+    
+    div {
+        padding: 15px;
+    }
+    
+    .btn-principal {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+    
+    @keyframes float {
+        0% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-5px) rotate(2deg); }
+        100% { transform: translateY(0) rotate(0deg); }
     }
 }
