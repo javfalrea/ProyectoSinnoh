@@ -513,7 +513,8 @@ body {
     box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
 }
 .poke-contenedor.azul-skin .luz-principal {
-    background: #ffeb3b;
+    background-image: url(selloagua.png);
+    background-size: cover;
     box-shadow: 0 0 10px #ffeb3b, inset 0 0 15px rgba(255, 255, 255, 0.8);
 }
 .poke-contenedor.azul-skin .pantalla {
@@ -542,7 +543,8 @@ body {
     box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
 }
 .poke-contenedor.verde-skin .luz-principal {
-    background: #ff5722;
+    background-image: url(selloplanta.png);
+    background-size: cover;
     box-shadow: 0 0 10px #ff5722, inset 0 0 15px rgba(255, 255, 255, 0.8);
 }
 .poke-contenedor.verde-skin .pantalla {
@@ -572,7 +574,8 @@ body {
     box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
 }
 .poke-contenedor.negro-skin .luz-principal {
-    background: #9c27b0;
+    background-image: url(sellofantasma.png);
+    background-size: cover;
     box-shadow: 0 0 10px #9c27b0, inset 0 0 15px rgba(255, 255, 255, 0.8);
 }
 .poke-contenedor.negro-skin .pantalla {
@@ -608,7 +611,8 @@ body {
     box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(0, 0, 0, 0.5);
 }
 .poke-contenedor.marron-skin .luz-principal {
-    background: #ffcc80;
+    background-image: url(selloroca.png);
+    background-size: cover;
     box-shadow: 0 0 10px #ffcc80, inset 0 0 15px rgba(255, 255, 255, 0.8);
 }
 .poke-contenedor.marron-skin .marco-pantalla {
@@ -639,7 +643,8 @@ body {
 }
 
 .poke-contenedor.fuego-skin .luz-principal {
-    background: #ffae00;
+    background-image: url(sellofuego.png);
+    background-size: cover;
     box-shadow: 0 0 10px #ffcc80, inset 0 0 15px rgba(255, 255, 255, 0.8);
 }
 
