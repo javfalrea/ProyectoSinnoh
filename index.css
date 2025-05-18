@@ -538,7 +538,8 @@ body {
 
 /* Tema Fuego */
 .fuego-skin .poke-cuerpo {
-    background-color: #ff0000;
+    background-image: url(diseno-fondo-fuego_1189-229.png);
+    background-size: cover;
     border: 4px solid #630000;
     box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
 }
