@@ -241,7 +241,7 @@ function configurarEventos() {
     document.getElementById("boton-arriba").addEventListener("click", () => navegarPokemon(-1));
     document.getElementById("boton-abajo").addEventListener("click", () => navegarPokemon(1));
     document.getElementById("boton-derecha").addEventListener("click", toggleRecomendacion);
-    document.getElementById("boton-izquierda").addEventListener("click", mostrarBusqueda);
+    document.getElementById("boton-izquierda").addEventListener("click", () => window.location.href = "index.html");
     
     // Botón B
     document.getElementById("boton-b").addEventListener("click", () => {
@@ -347,7 +347,7 @@ function mostrarBusqueda() {
     activeSection = "buscar";
     seccionRecomendacion.style.display = "none";
     seccionBusqueda.style.display = "block";
-    panelDescripcion.textContent = "Busca Pokémon por ID. Usa los botones ↑/↓ para navegar por IDs y el botón → para ver Pokemons recomendados";
+    panelDescripcion.textContent = "Busca Pokémon por ID. Usa los botones ↑/↓ para navegar por IDs y el botón → para ver Pokemons recomendados. Usa el botón ← para volver a la página principal.";
 }
 
 // Buscar Pokémon por ID
