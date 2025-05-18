@@ -366,7 +366,7 @@ a::before {
     left: 0;
     width: 100%;
     height: 50%;
-    background-color: var(--pokemon-red);
+    background-color: green;
     transition: transform 0.4s;
     transform: translateY(-100%);
     z-index: -1;
@@ -398,7 +398,7 @@ a:hover::before {
 
 a:hover::after {
     transform: translateY(0);
-    background-color: var(--pokemon-red);
+    background-color: green;
 }
 
 a.btn-reiniciar {
