@@ -280,7 +280,7 @@ function configurarSelectorTemas() {
             const nombreTema = opcion.getAttribute("data-tema");
             
             // Quitar todos los temas
-            contenedor.classList.remove("rojo-skin", "azul-skin", "verde-skin", "negro-skin", "marron-skin");
+            contenedor.classList.remove("rojo-skin", "fuego-skin", "azul-skin", "verde-skin", "negro-skin", "marron-skin");
             
             // Aplicar el tema seleccionado
             contenedor.classList.add(`${nombreTema}-skin`);
@@ -299,7 +299,7 @@ function configurarSelectorTemas() {
     // Cargar tema guardado (si existe)
     const temaGuardado = localStorage.getItem("miTemaPokedex");
     if (temaGuardado) {
-        contenedor.classList.remove("rojo-skin", "azul-skin", "verde-skin", "negro-skin", "marron-skin");
+        contenedor.classList.remove("rojo-skin", "fuego-skin", "azul-skin", "verde-skin", "negro-skin", "marron-skin");
         contenedor.classList.add(`${temaGuardado}-skin`);
         
         // Actualizar texto del botón
