@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let intentosRestantes = 3;   
     let pistasMostradas = 1;     
     
-    // ===== REFERENCIAS A ELEMENTOS DEL DOM =====
     // Estas constantes nos permiten acceder a los elementos HTML más fácilmente
     
     // Objeto con referencias a todas las pantallas del juego
@@ -28,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Otras referencias útiles a elementos del DOM
     const instrucciones = document.querySelector('.instrucciones');      
     const formularios = document.querySelectorAll('form');               
-    const imgSiluetas = document.querySelectorAll('img[src*="silhouettes"]'); 
+    const imgSiluetas = document.querySelectorAll('img[alt*="Silueta"]'); 
     const botonesIniciales = document.querySelector('.botones-principales'); 
     
     async function seleccionarPokemonAleatorio() {
@@ -45,7 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 id: data.id,             
                 nombre: data.name,       
                 imagen: data.sprites.front_default,  
-                silueta: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/silhouettes/${data.id}.png` 
+                // Ya no usamos la URL de silueta de PokeAPI porque no funciona
+                // En su lugar, usaremos la misma imagen con clase especial para CSS
+                silueta: data.sprites.front_default 
             };
             
             // Capitalizamos la primera letra del nombre para mostrarlo correctamente
@@ -67,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 id: 387,
                 nombre: 'turtwig',
                 imagen: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/387.png',
-                silueta: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/silhouettes/387.png'
+                silueta: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/387.png'
             };
             nombrePokemon = 'Turtwig';
             
@@ -81,14 +82,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function actualizarImagenes() {
         // Actualizamos todas las imágenes de siluetas en las pantallas de intento
         imgSiluetas.forEach(img => {
-            img.src = pokemonActual.silueta;  // Cambiamos la URL a la silueta del Pokémon actual
+            img.src = pokemonActual.silueta;  // Usar la imagen regular
             img.alt = `Silueta de ${nombrePokemon}`; // Actualizamos el texto alternativo
+            img.classList.add('silueta-pokemon'); // Añadimos clase para aplicar estilo de silueta en CSS
         });
         
         // Actualizamos la imagen final (la que se muestra cuando termina el juego)
         const imgFinal = document.querySelector('#final img');
         imgFinal.src = pokemonActual.imagen;  // URL de la imagen a color del Pokémon
         imgFinal.alt = nombrePokemon;         // Texto alternativo con el nombre
+        imgFinal.classList.remove('silueta-pokemon'); // Nos aseguramos de que no tenga estilo de silueta
         
         // Actualizamos el texto del resultado que muestra el nombre del Pokémon
         const textoResultado = document.querySelector('#derrota p strong');
