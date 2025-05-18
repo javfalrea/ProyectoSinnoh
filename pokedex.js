@@ -310,11 +310,21 @@ function configurarSelectorTemas() {
     }
 }
 
-// Navegar entre IDs de Pokémon
+// Navegar entre IDs de Pokémon con navegación circular
 function navegarPokemon(direccion) {
     if (activeSection === "buscar") {
         const currentId = pokemonIdInput.value === "" ? "1" : pokemonIdInput.value;
-        const newId = Math.max(1, Math.min(210, parseInt(currentId) + direccion));
+        let newId;
+        
+        // Implementar la navegación circular
+        if (parseInt(currentId) === 1 && direccion === -1) {
+            newId = 210; // Si estamos en 1 y vamos hacia abajo, ir a 210
+        } else if (parseInt(currentId) === 210 && direccion === 1) {
+            newId = 1; // Si estamos en 210 y vamos hacia arriba, ir a 1
+        } else {
+            newId = Math.max(1, Math.min(210, parseInt(currentId) + direccion));
+        }
+        
         pokemonIdInput.value = newId;
         buscarPokemon(newId.toString());
     }
