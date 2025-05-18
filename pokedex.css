@@ -627,3 +627,42 @@ body {
     background-color: #ffcc80;
     border: 5px solid #81530f;
 }
+/* Tema Fuego */
+.poke-contenedor.fuego-skin .poke-cuerpo {
+    background-color: #ff0000;
+    border: 4px solid #630000;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.poke-contenedor.fuego-skin .luz-principal {
+    background: #ffae00;
+    box-shadow: 0 0 10px #ffcc80, inset 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.poke-contenedor.fuego-skin .marco-pantalla {
+    background-color: #630000;
+}
+
+.poke-contenedor.fuego-skin .pantalla {
+    background-color: #ffae00;
+    border-color: #630000;
+}
+
+.poke-contenedor.fuego-skin .panel-datos {
+    background-color: #ffae00;
+    border-color: #630000;
+}
+
+.poke-contenedor.fuego-skin .datos-contenido {
+    background-color: #ffae00;
+    color: #630000;
+}
+
+.poke-contenedor.fuego-skin .menu-item.activo {
+    background-color: #c70000;
+}
+
+.poke-contenedor.fuego-skin .boton-verde {
+    background-color: #ffae00;
+    border: 5px solid #81530f;
+}
